@@ -1,0 +1,339 @@
+{% load static %}
+{% load main_tags %}
+{% load carts_tags %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NoteHub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><!-- подключ шрифт -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><!-- подключ шрифт -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet"><!-- подключ шрифт -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <!-- подключ бутсрап -->
+  <link rel="stylesheet" href="{% static 'assets/owlcarousel/owl.carousel.min.css'%}"><!-- Подключаем стили для карусели -->
+  <link rel="stylesheet" href="{% static 'assets/owlcarousel/owl.theme.default.min.css' %}"><!-- Подключаем тему карусели -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <!-- подключаем иконки -->
+  <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+  {% block css %}
+  {% endblock css %}
+</head>
+{% include "main/notifications.html" %}
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header-top py-1"> <!-- отодвинем по оси Y кнопки и иконки вниз py-1 -->
+        <div class="container-fluid">
+          <div class="row">
+            <div class=" col-6 col-sm-4">
+              <!--задаем парамитр адаптивности sm>=576пикселей md>768px, lg>992px, xl>1200px по ширине-->
+              <div class="header-top-phone d-flex align-items-center h-100">
+                <!--центрируем телефон по центру и висоте align-items-center h-100 h-высота  -->
+                <i class="fa-solid fa-phone-volume"></i><!--подключили иконку телефона -->
+                <a href="tel:+88001234567" class="ms-2">+8800-123-45-67</a><!--сместим телефон в лево  class="ms-2" -->
+              </div>
+            </div>
+            <div class="col-sm-4 d-none d-sm-block">
+              <!--скрываем иконки на маленьких устройствах и задаем из появление только если ширина выше 576px d-none d-sm-block-->
+              <ul class="social-icons">
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+               
+
+                
+              </ul>
+            </div>
+              
+            <div class="col-6 col-sm-4 ">
+              <!--  Окрыли d-flex justify-content-end прижимает к правому краю -->
+              <div class="d-flex justify-content-end "> <!-- d-flex justify-content-end прижимает к правому краю -->
+                <li style="margin-right: 10px; margin-top: 12px; list-style: none"><span class="username">Hello {{ user.username|default:"😎" }}</span></li>
+
+                <div class="btn-group me-2"><!--Отступ между кнопками me-2 значит переместить в право-->
+                  <div class="dropdown">
+                    <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Account
+                    </button>
+                    <ul class="dropdown-menu">
+                      {% if not user.is_authenticated  %}
+                      <li><a class="dropdown-item" href="{% url "user:login" %}">Login</a></li>
+                      <li><a class="dropdown-item" href="{% url "user:registration" %}">Registration</a></li>
+                      {% else %}
+                      <li><a class="dropdown-item" href="{% url "user:logout" %}">logout</a></li>
+                      {% endif %}
+                    </ul>
+                  </div>
+                </div>
+                <div class="btn-group">
+                  <div class="dropdown">
+                    <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      En
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">UA</a></li>
+                      <li><a class="dropdown-item" href="#">RU</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- закрыли d-flex justify-content-end прижимает к правому краю -->
+            </div>
+          </div>
+        </div>
+      </div><!--header-top close-->
+
+      <!--header-middle open-->
+      <div class="header-middle bg-white py-4"><!-- отодвинем по оси Y кнопки и иконки вниз py-4 -->
+        <div class="container-fluid"><!-- создаем контейнер для того чтобы колонки занимали все ширину экрана -->
+          <div class="row align-items-center"><!-- выстраивает колонки по горизонтали -->
+            <div class="col-6 col-md-4"><!--созлаем 3 колонки так как у нас сетка равна 13 то col-md-4 -->
+              <a href="index.html" class="header-logo h1">NoteHub</a><!--ссылка для логотипа, h1 для размера текста -->
+            </div>
+
+
+            <!--==================КОРЗИНА cart-buttons-название класса, text-end-прижать к правому краю================-->
+
+            <div class="col-6 col-md-4 cart-buttons order-md-2 text-end d-lg-block">
+              <!--корзина cart-buttons-название класса, text-end-прижать к правому краю-->
+              <!--выдвижное поле корзины-->
+              <div class="offcanvas offcanvas-end" tabindex="-1"  id="offcanvasCart"
+                aria-labelledby="#offcanvasCartLabel">
+                <div class="offcanvas-header">
+                  <h5 class="offcanvas-title" id="#offcanvasCartLabel">Cart</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <!--товары внутри корзины открыто-->
+                  <div class="table-responsive">
+                    <table class="table offCanvasCart-table">
+                      {% user_carts request as carts %}
+                      {% for cart in carts %}
+                      <tbody>
+                        <!-- первая карточка товара внутри корзины открыто-->
+                        <tr>
+                          <td class="product-img-td"><a href="{% url 'goods:product' cart.product.slug %}"><img src="{{cart.product.image.url}}"></a></td>
+                          <!--фото оовара в корзине-->
+                          <td><a href="{% url 'goods:product' cart.product.slug %}">{{cart.product.name}}</a></td><!--название товара в корзине-->
+                          <td>{{cart.product.price}}</td><!--цена товара в корзине-->
+                          <td>&times;{{cart.quantity}}</td><!--количество товара в корзине-->
+                          <td><a href="{% url 'cart:cart_remove' cart.id %}" class="btn-btn-danger" style="color:red; font-size: 24px; margin-top: -7px;"><i
+                                class="fa-regular fa-circle-xmark"></i></a></td>
+                          <!--кнопка удалить товар из корзины-->
+                        </tr> <!-- первая карточка товара внутри корзины открыто-->
+                      </tbody>
+                      {% endfor %}
+
+                      <!-- итоговое количество товаров в корзине открыто-->
+                      <tfoot>
+                        <tr>
+                          <td colspan="4" class="text-end">Total: </td>
+                          <td class="text-end">{{carts.total_price}}</td><!-- итоговоя сумма-->
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div> <!--товары внутри корзины закрыто-->
+
+                  <!--==========кнопки внутри корзины открыто=========-->
+                  {% if carts %}
+                  <div class="text-end mt-3">
+                    <a href="#" class="btn btn-outline-warning">Оформити замовлення</a>
+                  </div>
+                  {% endif %}
+                  <!--===========кнопки внутри корзины закрыто========-->
+                </div>
+              </div>
+
+            </div><!--==================КОРЗИНА окно закрыто================-->
+
+            <!--===============================форма для поиска товаров====================================-->
+            <div class="col-md-4" order-md-1 mt-2 mt-md-0><!--форма для поиска товаров-->
+              <form action="{% url "catalog:seach" %}" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Seach" aria-label="Seach"
+                    aria-describedby="button-seach">
+                  <button class="btn btn-outline-secondary" type="submit" id="button-seach"><i
+                      class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+              </form>
+            </div>
+  
+          </div>
+        </div>
+
+      </div><!--header-middle close-->
+
+    </header>
+
+    <!--===============header-bottom NAVIGATION panel open=============-->
+    <div class="header-bottom sticky-top" id="header-nav"><!--sticky-top для фиксации панели при прокрутке-->
+      <nav class="navbar navbar-expand-xl bg-dark" data-bs-theme="dark">
+        <!--меняем цвет навигационной панели bg-dark, data-bs-theme="dark", парам xl сворач меню после 1200рх-->
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-start" id="offcanvasNavbar" tabindex="-1"
+            aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'main:main' %}">Home</a>
+                </li>
+                {% tag_categories as categories %}
+                {% for category in categories %}
+                <li>
+                  <a class="nav-link " href="{% url 'catalog:goods' category.slug %}">{{category}}</a>
+                </li>
+                {% endfor %}
+                {% if request.user.is_authenticated %}
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="{% url 'users:cart' %}">Cart</a>
+                </li>
+                {% endif %}
+                
+                
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!--иконка корзины в навигац панели-->
+          {% if request.path != '/user/users-cart/' %}
+          <div>
+            <!--иконка корзины в навигац панели d-block d-lg-none показ только при сворачивании меню-->
+            
+            <button class="btn p-10" id="cart-open" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasCart" aria-controls="offcanvasCart"><!--сдвинем значек в лево p-10-->
+              <i
+                class="fa-solid fa-cart-arrow-down"></i><!--иконка корзины <i class="fa-solid fa-cart-arrow-down"></i>-->
+              <span
+                class="badge text-bg-warning card-badge bg-warning">{{carts.total_quantity}}</span><!--badge text-bg-warning для отображение количества товаров в корзине-->
+            </button>
+          </div>
+   
+          {% endif %}
+
+        </div>
+      </nav>
+    </div><!--header-bottom NAVIGATION panel close-->
+
+
+    <!--=============================================Content panel==================================================-->
+    <main class="main">
+    
+     
+    
+    {% block content%}
+
+    {% endblock %}
+
+    
+      
+ 
+    <!--============================Работа над футером открыт=====================-->
+    <footer class="footer">
+      <div class="container-fluid">
+        <div class="row">
+          <!--==первая колонка в футере окрыта====-->
+          <div class="col-md-3 col-6">
+            <h4>Information</h4>
+            <ul class="list-unstyled">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="#">Payment</a></li>
+              <li><a href="#">Delivery</a></li>
+              <li><a href="#">Contacts</a></li>
+            </ul>
+          </div><!--==первая колонка в футере закрыта====-->
+
+          <!--==вторая колонка в футере окрыта====-->
+          <div class="col-md-3 col-6">
+            <h4>Working hours</h4>
+            <ul class="list-unstyled">
+              <li>Kyiv, str.Tarasa Shevchenko</li>
+              <li>mon-fri: 9:00-18:00</li>
+            </ul>
+          </div><!--==вторая колонка в футере закрыта====-->
+
+          <!--==третья колонка в футере окрыта====-->
+          <div class="col-md-3 col-6">
+            <h4>Contacts</h4>
+            <ul class="list-unstyled">
+              <li><a href="tel:1234567890">123-456-7890</a></li>
+              <li><a href="#">Contacts</a></li>
+            </ul>
+          </div><!--==третья колонка в футере закрыта====-->
+
+          <!--==четвертая колонка в футере окрыта====-->
+          <div class="col-md-3 col-6">
+            <h4>Follow us</h4>
+            <ul class="footer-icons">
+              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+            </ul>
+          </div><!--==четвертая колонка в футере закрыта====-->
+
+        </div>
+      </div>
+    </footer><!--============================Работа над футером закрыт=====================-->
+   
+
+    
+    
+    <button type="button" id="top">
+      <i class="fa-solid fa-message"><span class="help-text"> Need help?</span></i>
+    </button>
+
+    <!-- Модальное окно -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h5>Enter your phone number and we will contact you</h5>
+        <form>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+          <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+          <button type="submit" class="btn-submit">Submit</button>
+        </form>
+      </div>
+    </div>
+    <!-- Модальное окно закрыто -->
+   
+
+  
+  </div>
+  </div>
+  </div>
+
+  </main>
+
+
+  <!--============================Работа над футером открыт=====================-->
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!--==подключаем jquery для карусели=-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- подключ джава скрипт -->
+  
+  <script src="{% static 'assets/owlcarousel/owl.carousel.min.js' %}"></script><!--==подключаем карусель=-->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+  
+ 
+</body>
+
+</html>

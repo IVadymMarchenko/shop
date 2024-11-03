@@ -1,0 +1,61 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+
+
+{% block content %}
+<div class="content-fluid mb-3">
+    <div class="row">
+      <!--============Login OPEN=============-->
+      <div class="col-12">
+        <div class="page-register bg-white p-3">
+          <h1 class="page-title h2"><span>Login</span></h1>
+
+          <!--============Login FORM OPEN=============-->
+          <div class="row col-md-6 offset-md-3">
+            <form action="{% url "user:login" %}" method="post" class="needs-validation" novalidate>
+              {% csrf_token %}
+              {% if form.errors %}
+               {%for field, errors in form.errors.items %}
+                 {% for error in errors %}
+                 <p>{{ error }}</p>
+               {% endfor %}
+               {% endfor %}
+               {% endif %}
+              <div class="mb-3">
+                <label for="id_email" class="form-label">email</label>
+                <input type="email" class="form-control" value="{% if form.email.value  %}{{form.email.value}}{% endif %}" name="email" id="id_email" placeholder="email" required>
+                <div class="invalid-feedback">
+                  Please provide a valid email address
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <label for="id_password" class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" id="id_password" placeholder="password" required>
+                <div class="invalid-feedback">
+                  Password is required
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <button type="submit" class="btn btn-warning register-button w-100">Enter</button>
+              </div>
+
+              <!--============Кнопки  с иконками Google и Facebook=============-->
+              <div class="mb-3 d-flex justify-content-center gap-3">
+                <button type="button" class="btn btn-light btn-icon google-button">
+                  <i class="fa-brands fa-google"></i>
+                </button>
+                <button type="button" class="btn btn-light btn-icon facebook-button">
+                  <i class="fa-brands fa-facebook"></i>
+                </button>
+              </div>
+
+            </form>
+          </div>
+          <!--============REGISTR FORM CLOSE=============-->
+        </div>
+      </div>
+      </div>
+      {% endblock %}

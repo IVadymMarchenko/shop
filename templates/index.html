@@ -1,0 +1,948 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NoteHub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><!-- подключ шрифт -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><!-- подключ шрифт -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet"><!-- подключ шрифт -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <!-- подключ бутсрап -->
+  <link rel="stylesheet" href="assets/owlcarousel/owl.carousel.min.css"><!-- Подключаем стили для карусели -->
+  <link rel="stylesheet" href="assets/owlcarousel/owl.theme.default.min.css"><!-- Подключаем тему карусели -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <!-- подключаем иконки -->
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header-top py-1"> <!-- отодвинем по оси Y кнопки и иконки вниз py-1 -->
+        <div class="container-fluid">
+          <div class="row">
+            <div class=" col-6 col-sm-4">
+              <!--задаем парамитр адаптивности sm>=576пикселей md>768px, lg>992px, xl>1200px по ширине-->
+              <div class="header-top-phone d-flex align-items-center h-100">
+                <!--центрируем телефон по центру и висоте align-items-center h-100 h-высота  -->
+                <i class="fa-solid fa-phone-volume"></i><!--подключили иконку телефона -->
+                <a href="tel:+88001234567" class="ms-2">+8800-123-45-67</a><!--сместим телефон в лево  class="ms-2" -->
+              </div>
+            </div>
+            <div class="col-sm-4 d-none d-sm-block">
+              <!--скрываем иконки на маленьких устройствах и задаем из появление только если ширина выше 576px d-none d-sm-block-->
+              <ul class="social-icons">
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-sm-4">
+              <!--  Окрыли d-flex justify-content-end прижимает к правому краю -->
+              <div class="d-flex justify-content-end"> <!-- d-flex justify-content-end прижимает к правому краю -->
+
+                <div class="btn-group me-2"><!--Отступ между кнопками me-2 значит переместить в право-->
+                  <div class="dropdown">
+                    <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Account
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Sign in</a></li>
+                      <li><a class="dropdown-item" href="#">Sign up</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="btn-group">
+                  <div class="dropdown">
+                    <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      En
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">UA</a></li>
+                      <li><a class="dropdown-item" href="#">RU</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- закрыли d-flex justify-content-end прижимает к правому краю -->
+
+
+            </div>
+          </div>
+        </div>
+      </div><!--header-top close-->
+
+      <!--header-middle open-->
+      <div class="header-middle bg-white py-4"><!-- отодвинем по оси Y кнопки и иконки вниз py-4 -->
+        <div class="container-fluid"><!-- создаем контейнер для того чтобы колонки занимали все ширину экрана -->
+          <div class="row align-items-center"><!-- выстраивает колонки по горизонтали -->
+            <div class="col-6 col-md-4"><!--созлаем 3 колонки так как у нас сетка равна 13 то col-md-4 -->
+              <a href="index.html" class="header-logo h1">NoteHub</a><!--ссылка для логотипа, h1 для размера текста -->
+            </div>
+
+
+            <!--==================КОРЗИНА cart-buttons-название класса, text-end-прижать к правому краю================-->
+            <div class="col-6 col-md-4 cart-buttons order-md-2 text-end d-lg-block">
+              <!--корзина cart-buttons-название класса, text-end-прижать к правому краю-->
+              <!--выдвижное поле корзины-->
+              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart"
+                aria-labelledby="#offcanvasCartLabel">
+                <div class="offcanvas-header">
+                  <h5 class="offcanvas-title" id="#offcanvasCartLabel">Offcanvas</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <!--товары внутри корзины открыто-->
+                  <div class="table-responsive">
+                    <table class="table offCanvasCart-table">
+                      <tbody>
+                        <!-- первая карточка товара внутри корзины открыто-->
+                        <tr>
+                          <td class="product-img-td"><a href="#"><img src="assets/img/1.jpg"></a></td>
+                          <!--фото оовара в корзине-->
+                          <td><a href="#">Ноутбук Dell Vostro</a></td><!--название товара в корзине-->
+                          <td>$100</td><!--цена товара в корзине-->
+                          <td>&times;1</td><!--количество товара в корзине-->
+                          <td><button class="btn-btn-danger button-cls"><i
+                                class="fa-regular fa-circle-xmark"></i></button></td>
+                          <!--кнопка удалить товар из корзины-->
+                        </tr> <!-- первая карточка товара внутри корзины открыто-->
+
+                        <!-- вторая карточка товара внутри корзины открыто-->
+                        <tr>
+                          <td class="product-img-td"><a href="#"><img src="assets/img/2.jpg"></a></td>
+                          <!--фото оовара в корзине-->
+                          <td><a href="#">Ноутбук Dell</a></td><!--название товара в корзине-->
+                          <td>$150</td><!--цена товара в корзине-->
+                          <td>&times;1</td><!--количество товара в корзине-->
+                          <td><button class="btn-btn-danger button-cls"><i
+                                class="fa-regular fa-circle-xmark"></i></button></td>
+                          <!--кнопка удалить товар из корзины-->
+                        </tr> <!-- вторая карточка товара внутри корзины открыто-->
+
+                        <!-- третяя карточка товара внутри корзины открыто-->
+                        <tr>
+                          <td class="product-img-td"><a href="#"><img src="assets/img/3.jpg"></a></td>
+                          <!--фото оовара в корзине-->
+                          <td><a href="#">Ноутбук Dell Vostro</a></td><!--название товара в корзине-->
+                          <td>$10</td><!--цена товара в корзине-->
+                          <td>&times;2</td><!--количество товара в корзине-->
+                          <td><button class="btn-btn-danger button-cls"><i
+                                class="fa-regular fa-circle-xmark"></i></button></td>
+                          <!--кнопка удалить товар из корзины-->
+                        </tr> <!-- третяя карточка товара внутри корзины открыто-->
+                      </tbody>
+
+                      <!-- итоговое количество товаров в корзине открыто-->
+                      <tfoot>
+                        <tr>
+                          <td colspan="4" class="text-end">Total: </td>
+                          <td class="text-end">$270</td><!-- итоговоя сумма-->
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div> <!--товары внутри корзины закрыто-->
+
+                  <!--==========кнопки внутри корзины открыто=========-->
+                  <div class="text-end mt-3">
+                    <a href="#" class="btn btn-outline-warning">Оформить заказ</a>
+                    <a href="#" class="btn btn-outline-secondary">Оформить заказ</a>
+                  </div>
+                  <!--===========кнопки внутри корзины закрыто========-->
+
+                  <div class="dropdown mt-3">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                      Dropdown button
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#" data-bs-dismiss="offcanvas">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div><!--==================КОРЗИНА окно закрыто================-->
+
+            <!--===============================форма для поиска товаров====================================-->
+            <div class="col-md-4" order-md-1 mt-2 mt-md-0><!--форма для поиска товаров-->
+              <form action="">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Seach" aria-label="Seach"
+                    aria-describedby="button-seach">
+                  <button class="btn btn-outline-secondary" type="submit" id="button-seach"><i
+                      class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div><!--header-middle close-->
+
+    </header>
+
+    <!--===============header-bottom NAVIGATION panel open=============-->
+    <div class="header-bottom sticky-top" id="header-nav"><!--sticky-top для фиксации панели при прокрутке-->
+      <nav class="navbar navbar-expand-xl bg-dark" data-bs-theme="dark">
+        <!--меняем цвет навигационной панели bg-dark, data-bs-theme="dark", парам xl сворач меню после 1200рх-->
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-start" id="offcanvasNavbar" tabindex="-1"
+            aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="category.html">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="#">
+                    Gaming laptops
+                  </a>
+                <li>
+                  <a class="nav-link " href="category.html">For work and study</a>
+                </li>
+                <li>
+                  <a class="nav-link " href="category.html">SecondHand Gaming laptops</a>
+                </li>
+                <li>
+                  <a class="nav-link " href="category.html">Acessories</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" data-bs-auto-close="outside">Catalog</a>
+                  <ul class="dropdown-menu dropdown-end">
+                    <li>
+                      <a class="dropdown-item" href="#">Shoes</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Jeans</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!--иконка корзины в навигац панели-->
+          <div>
+            <!--иконка корзины в навигац панели d-block d-lg-none показ только при сворачивании меню-->
+            <button class="btn p-10" id="cart-open" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasCart" aria-controls="offcanvasCart"><!--сдвинем значек в лево p-10-->
+              <i
+                class="fa-solid fa-cart-arrow-down"></i><!--иконка корзины <i class="fa-solid fa-cart-arrow-down"></i>-->
+              <span
+                class="badge text-bg-warning card-badge bg-warning">1</span><!--badge text-bg-warning для отображение количества товаров в корзине-->
+            </button>
+          </div>
+
+        </div>
+      </nav>
+    </div><!--header-bottom NAVIGATION panel close-->
+
+
+    <!--=============================================Content panel==================================================-->
+    <main class="main">
+
+      <div id="carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true"
+            aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <a href="https://example.com/laptops">
+              <img
+                src="https://img.freepik.com/free-vector/gradient-isometric-laptop-technology-background_52683-5620.jpg?t=st=1728287800~exp=1728291400~hmac=e534df314436ca17de9869d4de3b64572b46d0b9d60abdf22c7a9bc8cb7e6117&w=1380"
+                class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h2 class="carousel-title">Лучшие ноутбуки для работы</h2>
+                <p class="carousel-text">Надежность и производительность для повседневных задач.</p>
+              </div>
+            </a>
+          </div>
+          <div class="carousel-item">
+            <a href="https://example.com/study-devices">
+              <img
+                src="https://img.freepik.com/free-photo/laptop-with-blank-screen-table-office-3d-render_1142-42219.jpg?t=st=1728287327~exp=1728290927~hmac=290ddb55163bc2795a711f5fbfd479fce79e27d98b5f8d6e23dd2064c533e892&w=1380"
+                class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h2 class="carousel-title">Устройства для учебы</h2>
+                <p class="carousel-text">Оптимизированные для обучения и продуктивности.</p>
+              </div>
+            </a>
+          </div>
+          <div class="carousel-item">
+            <a href="https://cdn.stocksnap.io/img-thumbs/960w/office-work_Q6PIRY9O7M.jpg">
+              <img src="https://cdn.stocksnap.io/img-thumbs/960w/office-work_Q6PIRY9O7M.jpg" class="d-block w-100"
+                alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h2 class="carousel-title">Игровые ПК</h2>
+                <p class="carousel-text">Максимальная мощность для игр и развлечений.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+
+
+
+      <!--Надпись топ покупаемых товаров-->
+      <nav class="catalogTabs-nav" style="margin-top: -10px;">
+        <ul class="catalogTabs-nav-box">
+          <li class="catalogTabs-nav-i __active top-goods" rel="global_action"><span class="catalogTabs-nav-a">Top
+              goods</span>
+          </li>
+        </ul>
+      </nav>
+
+      <!--============================Карусель верхняя товаров open=====================-->
+      <section id="slider" class="" style="margin-top: -30px;">
+        <div class="container">
+          <div class="slider owl-carousel">
+            <!-- Начало карточки продукта -->
+            <div class="slider-card">
+              <div class="single-product card__article">
+                <div class="product-thumb image-wrapper d-flex justify-content-center align-items-center mb-4">
+                  <img src="assets/img/2.jpg" alt="Революционный Android OnePlus" class="card__img">
+                </div>
+                <div class="product-title">
+                  <h3 class="product-name card__title">
+                    <a href="#">Ноутбук Dell Vostro 15 3520 (N5315PVNB3520UA_W11P) Black</a>
+                  </h3>
+                </div>
+                <div class="product-btns">
+                  <a href="#" class="btn-small mr-2">$879</a>
+                  <a href="#" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" class="btn-round"><i class="fa fa-heart"></i></a>
+                </div>
+                <!-- Список характеристик -->
+                <div class="product-specs card__data">
+                  <ul>
+                    <li>
+                      <strong>Процессор:</strong> Snapdragon 888
+                      <strong>Оперативная память:</strong> 12 ГБ
+                      <strong>Хранилище:</strong> 256 ГБ
+                      <strong>Камера:</strong> 108 МП
+                      <strong>Батарея:</strong> 4500 мАч
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Конец карточки продукта -->
+
+            <!-- Начало карточки продукта -->
+            <div class="slider-card">
+              <div class="single-product card__article">
+                <div class="product-thumb image-wrapper d-flex justify-content-center align-items-center mb-4">
+                  <img src="assets/img/2.jpg" alt="Революционный Android OnePlus" class="card__img">
+                </div>
+                <div class="product-title">
+                  <h3 class="product-name card__title">
+                    <a href="#">Ноутбук Dell Vostro 15 3520 (N5315PVNB3520UA_W11P) Black</a>
+                  </h3>
+                </div>
+                <div class="product-btns">
+                  <a href="#" class="btn-small mr-2">$879</a>
+                  <a href="#" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" class="btn-round"><i class="fa fa-heart"></i></a>
+                </div>
+                <!-- Список характеристик -->
+                <div class="product-specs card__data">
+                  <ul>
+                    <li>
+                      <strong>Процессор:</strong> Snapdragon 888
+                      <strong>Оперативная память:</strong> 12 ГБ
+                      <strong>Хранилище:</strong> 256 ГБ
+                      <strong>Камера:</strong> 108 МП
+                      <strong>Батарея:</strong> 4500 мАч
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Конец карточки продукта -->
+
+            <!-- Начало карточки продукта -->
+            <div class="slider-card">
+              <div class="single-product card__article">
+                <div class="product-thumb image-wrapper d-flex justify-content-center align-items-center mb-4">
+                  <img src="assets/img/2.jpg" alt="Революционный Android OnePlus" class="card__img">
+                </div>
+                <div class="product-title">
+                  <h3 class="product-name card__title">
+                    <a href="#">Ноутбук Dell Vostro 15 3520 (N5315PVNB3520UA_W11P) Black</a>
+                  </h3>
+                </div>
+                <div class="product-btns">
+                  <a href="#" class="btn-small mr-2">$879</a>
+                  <a href="#" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" class="btn-round"><i class="fa fa-heart"></i></a>
+                </div>
+                <!-- Список характеристик -->
+                <div class="product-specs card__data">
+                  <ul>
+                    <li>
+                      <strong>Процессор:</strong> Snapdragon 888
+                      <strong>Оперативная память:</strong> 12 ГБ
+                      <strong>Хранилище:</strong> 256 ГБ
+                      <strong>Камера:</strong> 108 МП
+                      <strong>Батарея:</strong> 4500 мАч
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Конец карточки продукта -->
+
+            <!-- Начало карточки продукта -->
+            <div class="slider-card">
+              <div class="single-product card__article">
+                <div class="product-thumb image-wrapper d-flex justify-content-center align-items-center mb-4">
+                  <img src="assets/img/2.jpg" alt="Революционный Android OnePlus" class="card__img">
+                </div>
+                <div class="product-title">
+                  <h3 class="product-name card__title">
+                    <a href="#">Ноутбук Dell Vostro 15 3520 (N5315PVNB3520UA_W11P) Black</a>
+                  </h3>
+                </div>
+                <div class="product-btns">
+                  <a href="#" class="btn-small mr-2">$879</a>
+                  <a href="#" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" class="btn-round"><i class="fa fa-heart"></i></a>
+                </div>
+                <!-- Список характеристик -->
+                <div class="product-specs card__data">
+                  <ul>
+                    <li>
+                      <strong>Процессор:</strong> Snapdragon 888
+                      <strong>Оперативная память:</strong> 12 ГБ
+                      <strong>Хранилище:</strong> 256 ГБ
+                      <strong>Камера:</strong> 108 МП
+                      <strong>Батарея:</strong> 4500 мАч
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Конец карточки продукта -->
+
+            <!-- Начало карточки продукта -->
+            <div class="slider-card">
+              <div class="single-product card__article">
+                <div class="product-thumb image-wrapper d-flex justify-content-center align-items-center mb-4">
+                  <img src="assets/img/2.jpg" alt="Революционный Android OnePlus" class="card__img">
+                </div>
+                <div class="product-title">
+                  <h3 class="product-name card__title">
+                    <a href="#">Ноутбук Dell Vostro 15 3520 (N5315PVNB3520UA_W11P) Black</a>
+                  </h3>
+                </div>
+                <div class="product-btns">
+                  <a href="#" class="btn-small mr-2">$879</a>
+                  <a href="#" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" class="btn-round"><i class="fa fa-heart"></i></a>
+                </div>
+                <!-- Список характеристик -->
+                <div class="product-specs card__data">
+                  <ul>
+                    <li>
+                      <strong>Процессор:</strong> Snapdragon 888
+                      <strong>Оперативная память:</strong> 12 ГБ
+                      <strong>Хранилище:</strong> 256 ГБ
+                      <strong>Камера:</strong> 108 МП
+                      <strong>Батарея:</strong> 4500 мАч
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Конец карточки продукта -->
+
+            <!-- Начало карточки продукта -->
+            <div class="slider-card">
+              <div class="single-product card__article">
+                <div class="product-thumb image-wrapper d-flex justify-content-center align-items-center mb-4">
+                  <img src="assets/img/2.jpg" alt="Революционный Android OnePlus" class="card__img">
+                </div>
+                <div class="product-title">
+                  <h3 class="product-name card__title">
+                    <a href="#">Ноутбук Dell Vostro 15 3520 (N5315PVNB3520UA_W11P) Black</a>
+                  </h3>
+                </div>
+                <div class="product-btns">
+                  <a href="#" class="btn-small mr-2">$879</a>
+                  <a href="#" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" class="btn-round"><i class="fa fa-heart"></i></a>
+                </div>
+                <!-- Список характеристик -->
+                <div class="product-specs card__data">
+                  <ul>
+                    <li>
+                      <strong>Процессор:</strong> Snapdragon 888
+                      <strong>Оперативная память:</strong> 12 ГБ
+                      <strong>Хранилище:</strong> 256 ГБ
+                      <strong>Камера:</strong> 108 МП
+                      <strong>Батарея:</strong> 4500 мАч
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Конец карточки продукта -->
+
+            <!-- Начало карточки продукта -->
+            <div class="slider-card">
+              <div class="single-product card__article">
+                <div class="product-thumb image-wrapper d-flex justify-content-center align-items-center mb-4">
+                  <img src="assets/img/2.jpg" alt="Революционный Android OnePlus" class="card__img">
+                </div>
+                <div class="product-title">
+                  <h3 class="product-name card__title">
+                    <a href="#">Ноутбук Dell Vostro 15 3520 (N5315PVNB3520UA_W11P) Black</a>
+                  </h3>
+                </div>
+                <div class="product-btns">
+                  <a href="#" class="btn-small mr-2">$879</a>
+                  <a href="#" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" class="btn-round"><i class="fa fa-heart"></i></a>
+                </div>
+                <!-- Список характеристик -->
+                <div class="product-specs card__data">
+                  <ul>
+                    <li>
+                      <strong>Процессор:</strong> Snapdragon 888
+                      <strong>Оперативная память:</strong> 12 ГБ
+                      <strong>Хранилище:</strong> 256 ГБ
+                      <strong>Камера:</strong> 108 МП
+                      <strong>Батарея:</strong> 4500 мАч
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Конец карточки продукта -->
+
+
+          </div>
+        </div>
+      </section> <!--============================Карусель верхняя товаров close=====================-->
+
+      <div class="section-divider" style="margin-top: -70px;"></div> <!-- Линия между секциями -->
+
+      <!--============================О НАС open=====================-->
+      <section class="frontInfo" style="">
+        <div class="frontInfo-section __1">
+          <div class="layout-wrap">
+            <div class="frontInfo-container __1 __single">
+              <section class="frontInfo-about">
+                <article class="frontInfo-content">
+                  <h1 class="h2">NoteHub laptop store</h1>
+                  <div class="frontInfo-text "
+                    data-toggle-text="{&quot;show&quot;:&quot;Развернуть&quot;, &quot;hide&quot;:&quot;Свернуть&quot;}">
+                    <div class="text">
+                      <div class="about"><span style="font-size: 12px; text-transform: uppercase;"></span>
+                        <div class="column">
+                          <span class="about-title" style="font-size: 12px; text-transform: uppercase;"></span>
+                          <h2>NoteHub is a manufacturer<br>
+                            of workstations and desktop computers<br>
+                            under its own brand
+                          </h2>
+                          <p>Our goal is maximum performance for a minimal budget.!<br><br>
+                            Buying a workstation is a task, the solution of which affects the results of the success of
+                            your projects. Therefore, the best way is to trust the professionals. And we are ready to
+                            satisfy the most unexpected requests for solving your problems.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section><!--============================О НАС сlose=====================-->
+
+
+
+      <div class="section-divider " style="margin-top: -43px;"></div> <!-- Линия между секциями -->
+
+      <!--============================Карусель нижняя товаров open=====================-->
+      <section id="slider" class="" style="margin-top: 93px;">
+
+        <div class="container">
+          <div class="col-12">
+            <h2 class="section-title"><span>Sale</span></h2>
+          </div>
+
+          <div class="slider owl-carousel">
+            <!-- Начало карточки продукта -->
+            <div class="slider-card">
+              <div class="single-product card__article">
+                <div class="product-thumb image-wrapper d-flex justify-content-center align-items-center mb-4">
+                  <img src="assets/img/2.jpg" alt="Революционный Android OnePlus" class="card__img">
+                </div>
+                <div class="product-title">
+                  <h3 class="product-name card__title">
+                    <a href="#">Ноутбук Dell Vostro 15 3520 (N5315PVNB3520UA_W11P) Black</a>
+                  </h3>
+                </div>
+                <div class="product-btns">
+                  <!-- Старая цена -->
+                  <span class="btn-small mr-2"
+                    style="position: absolute; top: 10px; left: 10px; background-color: #fff; padding: 5px; text-decoration: line-through; color: red;">$999</span>
+                  <!-- Новая цена -->
+                  <a href="#" class="btn-small mr-2">$879</a>
+                  <a href="#" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" class="btn-round"><i class="fa fa-heart"></i></a>
+                </div>
+                <!-- Список характеристик -->
+                <div class="product-specs card__data">
+                  <ul>
+                    <li>Процессор: Snapdragon 888</li>
+                    <li>Оперативная память: 12 ГБ</li>
+                    <li>Хранилище: 256 ГБ</li>
+                    <li>Камера: 108 МП</li>
+                    <li>Батарея: 4500 мАч</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- Конец карточки продукта -->
+
+            <div class="slider-card">
+              <div class="single-product card__article">
+                <div class="product-thumb image-wrapper d-flex justify-content-center align-items-center mb-4">
+                  <img src="assets/img/2.jpg" alt="Революционный Android OnePlus" class="card__img">
+                </div>
+                <div class="product-title">
+                  <h3 class="product-name card__title">
+                    <a href="#">Ноутбук Dell Vostro 15 3520 (N5315PVNB3520UA_W11P) Black</a>
+                  </h3>
+                </div>
+                <div class="product-btns">
+                  <a href="#" class="btn-small mr-2">$879</a>
+                  <a href="#" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" class="btn-round"><i class="fa fa-heart"></i></a>
+                </div>
+                <!-- Список характеристик -->
+                <div class="product-specs card__data">
+                  <ul>
+                    <li>Процессор: Snapdragon 888</li>
+                    <li>Оперативная память: 12 ГБ</li>
+                    <li>Хранилище: 256 ГБ</li>
+                    <li>Камера: 108 МП</li>
+                    <li>Батарея: 4500 мАч</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="slider-card">
+              <div class="single-product card__article">
+                <div class="product-thumb image-wrapper d-flex justify-content-center align-items-center mb-4">
+                  <img src="assets/img/2.jpg" alt="Революционный Android OnePlus" class="card__img">
+                </div>
+                <div class="product-title">
+                  <h3 class="product-name card__title">
+                    <a href="#">Ноутбук Dell Vostro 15 3520 (N5315PVNB3520UA_W11P) Black</a>
+                  </h3>
+                </div>
+                <div class="product-btns">
+                  <a href="#" class="btn-small mr-2">$879</a>
+                  <a href="#" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" class="btn-round"><i class="fa fa-heart"></i></a>
+                </div>
+                <!-- Список характеристик -->
+                <div class="product-specs card__data">
+                  <ul>
+                    <li>Процессор: Snapdragon 888</li>
+                    <li>Оперативная память: 12 ГБ</li>
+                    <li>Хранилище: 256 ГБ</li>
+                    <li>Камера: 108 МП</li>
+                    <li>Батарея: 4500 мАч</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="slider-card">
+              <div class="single-product card__article">
+                <div class="product-thumb image-wrapper d-flex justify-content-center align-items-center mb-4">
+                  <img src="assets/img/2.jpg" alt="Революционный Android OnePlus" class="card__img">
+                </div>
+                <div class="product-title">
+                  <h3 class="product-name card__title">
+                    <a href="#">Ноутбук Dell Vostro 15 3520 (N5315PVNB3520UA_W11P) Black</a>
+                  </h3>
+                </div>
+                <div class="product-btns">
+                  <a href="#" class="btn-small mr-2">$879</a>
+                  <a href="#" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" class="btn-round"><i class="fa fa-heart"></i></a>
+                </div>
+                <!-- Список характеристик -->
+                <div class="product-specs card__data">
+                  <ul>
+                    <li>Процессор: Snapdragon 888</li>
+                    <li>Оперативная память: 12 ГБ</li>
+                    <li>Хранилище: 256 ГБ</li>
+                    <li>Камера: 108 МП</li>
+                    <li>Батарея: 4500 мАч</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="slider-card">
+              <div class="single-product card__article">
+                <div class="product-thumb image-wrapper d-flex justify-content-center align-items-center mb-4">
+                  <img src="assets/img/2.jpg" alt="Революционный Android OnePlus" class="card__img">
+                </div>
+                <div class="product-title">
+                  <h3 class="product-name card__title">
+                    <a href="#">Ноутбук Dell Vostro 15 3520 (N5315PVNB3520UA_W11P) Black</a>
+                  </h3>
+                </div>
+                <div class="product-btns">
+                  <a href="#" class="btn-small mr-2">$879</a>
+                  <a href="#" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" class="btn-round"><i class="fa fa-heart"></i></a>
+                </div>
+                <!-- Список характеристик -->
+                <div class="product-specs card__data">
+                  <ul>
+                    <li>Процессор: Snapdragon 888</li>
+                    <li>Оперативная память: 12 ГБ</li>
+                    <li>Хранилище: 256 ГБ</li>
+                    <li>Камера: 108 МП</li>
+                    <li>Батарея: 4500 мАч</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="slider-card">
+              <div class="single-product card__article">
+                <div class="product-thumb image-wrapper d-flex justify-content-center align-items-center mb-4">
+                  <img src="assets/img/2.jpg" alt="Революционный Android OnePlus" class="card__img">
+                </div>
+                <div class="product-title">
+                  <h3 class="product-name card__title">
+                    <a href="#">Ноутбук Dell Vostro 15 3520 (N5315PVNB3520UA_W11P) Black</a>
+                  </h3>
+                </div>
+                <div class="product-btns">
+                  <a href="#" class="btn-small mr-2">$879</a>
+                  <a href="#" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" class="btn-round"><i class="fa fa-heart"></i></a>
+                </div>
+                <!-- Список характеристик -->
+                <div class="product-specs card__data">
+                  <ul>
+                    <li>Процессор: Snapdragon 888</li>
+                    <li>Оперативная память: 12 ГБ</li>
+                    <li>Хранилище: 256 ГБ</li>
+                    <li>Камера: 108 МП</li>
+                    <li>Батарея: 4500 мАч</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="slider-card">
+              <div class="single-product card__article">
+                <div class="product-thumb image-wrapper d-flex justify-content-center align-items-center mb-4">
+                  <img src="assets/img/2.jpg" alt="Революционный Android OnePlus" class="card__img">
+                </div>
+                <div class="product-title">
+                  <h3 class="product-name card__title">
+                    <a href="#">Ноутбук Dell Vostro 15 3520 (N5315PVNB3520UA_W11P) Black</a>
+                  </h3>
+                </div>
+                <div class="product-btns">
+                  <a href="#" class="btn-small mr-2">$879</a>
+                  <a href="#" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" class="btn-round"><i class="fa fa-heart"></i></a>
+                </div>
+                <!-- Список характеристик -->
+                <div class="product-specs card__data">
+                  <ul>
+                    <li>Процессор: Snapdragon 888</li>
+                    <li>Оперативная память: 12 ГБ</li>
+                    <li>Хранилище: 256 ГБ</li>
+                    <li>Камера: 108 МП</li>
+                    <li>Батарея: 4500 мАч</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Можно добавить больше карточек здесь -->
+          </div>
+        </div>
+      </section> <!--============================Карусель нижняя товаров close=====================-->
+
+
+      <!--============================Наши преимущества open=====================-->
+      <section class="advantages clearfix">
+        <div class="container-fluid">
+          <div class="row mt-5">
+            <div class="col-12">
+              <h2 class="section-title" style="margin-top: -80px;"><span>Our advantages</span></h2>
+            </div>
+          </div>
+          <!--первый значек-->
+          <div class="items" style="margin-top: -65px;">
+            <div class="row gy-5"><!--gy-5 чтобы карточки не прилипали друг к другу-->
+              <div class="col-lg-3 col-sm-6">
+                <div class="item">
+                  <p><i class="fas fa-shipping-fast"></i></p>
+                  <p>Direct deliveries from the manufacturer</p>
+                </div>
+              </div>
+              <!--второй значек-->
+              <div class="col-lg-3 col-sm-6">
+                <div class="item">
+                  <p><i class="fas fa-cubes"></i></p>
+                  <p>Wide range of products</p>
+                </div>
+              </div>
+              <!--третий значек-->
+              <div class="col-lg-3 col-sm-6">
+                <div class="item">
+                  <p><i class="fas fa-hand-holding-usd"></i></p>
+                  <p>Nice prices</p>
+                </div>
+              </div>
+              <!--четвертый значек-->
+              <div class="col-lg-3 col-sm-6">
+                <div class="item">
+                  <p><i class="fas fa-solid fa-user-graduate"></i></p>
+                  <p>Consultations from professionals</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section><!--============================Наши преимущества close=====================-->
+
+      <!--============================test  card товаров open=====================-->
+      <!--============================test  card товаров close=====================-->
+
+      <!--============================Работа над футером открыт=====================-->
+      <footer class="footer">
+        <div class="container-fluid">
+          <div class="row">
+            <!--==первая колонка в футере окрыта====-->
+            <div class="col-md-3 col-6">
+              <h4>Information</h4>
+              <ul class="list-unstyled">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Payment</a></li>
+                <li><a href="#">Delivery</a></li>
+                <li><a href="#">Contacts</a></li>
+              </ul>
+            </div><!--==первая колонка в футере закрыта====-->
+
+            <!--==вторая колонка в футере окрыта====-->
+            <div class="col-md-3 col-6">
+              <h4>Working hours</h4>
+              <ul class="list-unstyled">
+                <li>Kyiv, str.Tarasa Shevchenko</li>
+                <li>mon-fri: 9:00-18:00</li>
+              </ul>
+            </div><!--==вторая колонка в футере закрыта====-->
+
+            <!--==третья колонка в футере окрыта====-->
+            <div class="col-md-3 col-6">
+              <h4>Contacts</h4>
+              <ul class="list-unstyled">
+                <li><a href="tel:1234567890">123-456-7890</a></li>
+                <li><a href="#">Contacts</a></li>
+              </ul>
+            </div><!--==третья колонка в футере закрыта====-->
+
+            <!--==четвертая колонка в футере окрыта====-->
+            <div class="col-md-3 col-6">
+              <h4>Follow us</h4>
+              <ul class="footer-icons">
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+              </ul>
+            </div><!--==четвертая колонка в футере закрыта====-->
+
+          </div>
+        </div>
+      </footer><!--============================Работа над футером закрыт=====================-->
+
+      <button type="button" id="top">
+        <i class="fa-solid fa-message"><span class="help-text"> Need help?</span></i>
+      </button>
+
+      <!-- Модальное окно -->
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Enter your phone number and we will contact you</h2>
+          <form>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+            <button type="submit" class="btn-submit">Submit</button>
+          </form>
+        </div>
+      </div>
+      <!-- Модальное окно закрыто -->
+
+  </div>
+  </div>
+  </div>
+
+  </main>
+
+
+  <!--============================Работа над футером открыт=====================-->
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!--==подключаем jquery для карусели=-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- подключ джава скрипт -->
+  <script src="assets/owlcarousel/owl.carousel.min.js"></script><!--==подключаем карусель=-->
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

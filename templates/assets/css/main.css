@@ -1,0 +1,1340 @@
+
+/* Определяем цвет для страницы и текста */
+:root {
+      --bg-color: #f5f5f5;
+      --text-color: #6c757d;
+      --accent-color: #95949d; 
+      --contrast-color: #222276;
+      --gray-color: #ccc;
+      --red-color: #b31a48;
+}
+
+.main {
+      background-color: #e5e8ec; /* Красный цвет текста */
+  }
+
+/* ===========================================Общие правила ==========================================================*/
+
+/* Определяем цвет для background-color и  color */
+html, body {
+      height: 100%;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+}
+
+
+body {
+      min-width: 320px;
+      font-family: 'Roboto', sans-serif;
+}
+
+/* Определяем цвет для всех ссылок */
+a {color:var(--text-color);
+      text-decoration: underline;/* Добавляем подчеркивание тексту */
+}
+
+
+/*  когда пользователь наводит курсор на ссылку (<a>) на веб-странице, то убирается стандартное подчёркивание текста ссылки. */
+a:hover {
+      text-decoration: none;
+}
+
+
+
+/* Делаем адаптивные картинки */
+img {max-width: 100%;
+      height: auto;
+}
+
+
+
+
+.btn, .dropdown-menu,.form-control {
+      border-radius: 0%;/* Делаем кнопки с острыми углами */
+}
+
+/* работа с фокусом формы */
+.form-control:focus {
+      color: var(--text-color);/* меняем цвет текста при заполнении формы */
+      border-color: var(--accent-color);
+      box-shadow:none;/* убераем тень */
+}
+
+
+.form-control::placeholder {
+      color: var(--gray-color);/* меняем цвет текста заполнителя */
+}
+
+
+.wrapper { 
+      min-height: 100%; 
+      display: flex;
+      flex-direction: column;
+}
+
+
+
+.btn-warning {
+      background-color: var(--accent-color);/* задаем фоновый цвет кнопки */
+      color:var(--contrast-color);/* меняем цвет текста кнопки */
+}
+
+.btn-outline-secondary {
+      border-color: var(--accent-color);
+}
+
+
+.btn-outline-secondary:hover {
+      background-color: var(--accent-color);
+      color: var(--contrast-color);
+}
+
+
+
+main.main {
+      flex: 1 1 auto;
+}
+
+/* =================Работа с заголовком Our advantages======================= */
+.section-title {
+      text-align: center; /* Центрирует текст внутри элемента */
+      margin-top: 20px; /* Добавляет отступ сверху для расстояния от предыдущего элемента */
+      color: #171818;
+      font-weight: 700;
+      text-transform: uppercase
+  }
+
+.section {
+      padding: 50px 0;
+}
+
+
+
+
+
+/* =================================Работа с  header====================================== */
+
+
+.header-top-phone a { text-decoration: none;/* ==Убераем подчеркивание с номера телефона=== */
+
+
+}
+
+.header-top-phone a:hover {
+      text-decoration: underline;/* ==делаем подчеркивание при наведении=== */
+}
+
+/* =================Оформляем иконки======================= */
+ul.social-icons {
+      list-style: none;/* ======Уберем черные точечки рядом с названиями====== */
+      display: flex;/* ======Выставляем название в списке в один ряд====== */
+      justify-content: center;/* ======размещаем их срого по центру====== */
+      margin-bottom: 0%;
+      padding: 0%;
+      z-index: -1;
+}
+
+/* ======Задаем отступ между иконками====== */
+.social-icons li {
+      margin-right: 10px;
+}
+
+/* ======адаем цвет иконок====== */
+.social-icons a {
+      background-color: var(--accent-color);/* ======Задаем цвет иконок====== */
+      color: var(--contrast-color);/* ======Задаем цвет текста иконок====== */
+      width: 30px;/* ======задаем ширину====== */
+      height: 30px;/* ======задаем высоту====== */
+      border-radius: 50%;/* ======делаем их в виде кружочков====== */
+      float: left;
+      text-align: center;/* ======Размещаем их по центру====== */
+      line-height: 30px;/* ======Выравниваем текст по центру====== */
+      transition: all .3s;/* ======Добавляем плавность при наведении на иконки====== */
+      
+}
+
+
+/* ======меняем цвет при наведении на иконки====== */
+ul.social-icons a:hover {
+      background-color: var(--contrast-color);
+      color: var(--accent-color);
+}
+
+
+/* ======работа с кнопками==================================================================================== */
+
+/* ======задаем цвет кнопкам====== */
+.header-top .btn {
+      background-color: #ffff;
+}
+
+
+
+
+/* ========================================стилизация логотипа=========================== */
+.header-logo {
+      text-decoration: none;/* ======убераем подчеркивание под логотипом====== */
+      text-transform: uppercase;/* ======преобразуем все символы логотипа в верхний регистр====== */
+      color: var(--contrast-color);/* ======определяем текс логотипа====== */
+      transition: all .3s;/* ======определяем плавность смены цвета при наведении 3млс====== */
+
+}
+
+.header-logo:hover {
+      color:var(--contrast-color); /* ======Определяем цвет на который будет меняться логотип при наведении====== */
+}
+
+
+
+
+
+/* ========================================стилизация корзины=========================== */
+.cart-buttons,.btn {
+      color: var(--gray-colorr);/* =========задаем цвет========= */
+      transition: all .3s;/* =========делаем плавное наведение========= */
+}
+
+
+.cart-buttons .btn:hover {
+      border: 1px solid var(--contrast-color);/* =========задаем цвет рамки вокруг корзины========= */
+}
+
+
+
+
+
+/* ==================стилизация навигационной панели================= */
+
+.header-bottom {
+      border-top: 3px solid var(--contrast-color);/* ===сдвигаем навигац панель вниз и делаем линию сверху==== */
+      box-shadow: 0 10px 10px rgba(0,0,0,.3);/* ===Добавляем тень навигац панели==== */
+}
+
+.header-bottom .navbar {
+      background-color: var(--accent-color);
+
+}
+
+.header-bottom .nav-item:first-child .nav-link {
+      padding-left: 0;
+}
+
+.header-bottom .navbar .nav-link {
+      color: #ffff;/* ===задаем цвет ссылкам=== */
+      transition: .3s all; /* ===плавность наведения== */
+      letter-spacing: .1rem;  /* ===задает интервал между символами текста.== */
+}
+
+
+.header-bottom .navbar .nav-link:hover {
+      color:var(--accent-color);/* ===задаем цвет на который будет меняться ссылка при наведении=== */
+}
+
+
+.header-bottom .navbar .nav-link.active {
+      color: var(--accent-color);/* ===Подсвет активной ссылки=== */
+}
+
+
+.header-bottom .navbar .nav-link {
+      padding: 1rem;/* ===Задаем внутрение отсупы между словами в навигац панели и увел ее=== */
+}
+
+/* ===уменьшение навиг панели при скролинге=== */
+.headernav-scroll.header-bottom .navbar .offcanvas:not(.show) .nav-link {
+      padding-top: 0.3rem;
+      padding-bottom: 0.3rem;
+
+}
+
+
+
+/* ================================================Main rules=================================================== */
+
+/* ===работа с надписью ТОП ТОВАРЫ=== */
+
+.catalogTabs-nav {
+      margin-top: 20px; /* Увеличиваем отступ сверху */
+  }
+.catalogTabs-nav {
+      margin-bottom: 16px;
+      padding: 25px 0;
+      text-align: center; }
+
+nav {
+      display: block;
+      unicode-bidi: isolate;
+}
+
+
+ul, ol, dl {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+  }
+
+.catalogTabs-nav-a {
+      font-weight: bold; /* Жирный шрифт */
+      text-transform: uppercase; /* Все буквы заглавные */
+      font-size: 2rem;
+  }
+.top-goods {
+      color: #171818;
+      font-weight: 700;
+}
+
+
+/* ============работа с карточкой товара========= */
+#carousel {
+      width: calc(100% - 80px); /* Уменьшаем ширину на 60px (по 30px с каждой стороны) */
+      margin: 0 auto; /* Центрируем карусель */
+  }
+
+.carousel-item {
+      padding: 15px; /* Отступы между карточками */
+  }
+
+.card {
+      width: 100%; 
+      transition: transform 0.2s, box-shadow 0.2s; /* Плавный переход */
+  }
+
+.card:hover {
+      transform: scale(1.1); /* Увеличиваем карточку при наведении */
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+  }
+
+.carousel-control-prev, .carousel-control-next {
+      width: 60px; /* Увеличиваем ширину кнопок */
+      margin-left: -20px; /* Отодвигаем влево */
+      margin-right: -20px; /* Отодвигаем вправо */
+      
+  }
+
+
+
+
+/* ================================кнопки купить и в корзину=================================*/
+.btn-group {
+      display: flex; /* Используем Flexbox для выравнивания кнопок в строку */
+      justify-content: center; /* Центрируем кнопки по горизонтали */
+      gap: 14px; /* Пробел между кнопками */
+      flex-wrap: wrap; /* Позволяем кнопкам переноситься на следующую строку при уменьшении экрана */
+  }
+  
+  .btn {
+      flex: 1 1 150px; /* Устанавливаем одинаковое поведение для обеих кнопок */
+      max-width: 150px; /* Ограничиваем максимальную ширину кнопок */
+      height: 40px; /* Фиксированная высота кнопок */
+      margin: 5px; /* Отступ между кнопками */
+      white-space: nowrap; /* Предотвращает перенос текста внутри кнопок */
+  }
+  
+  .card {
+      overflow: hidden; /* Скрывает содержимое, которое вылезает за границы карточки */
+      padding: 15px; /* Добавляем отступы внутри карточки */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Добавляем тень для визуального эффекта */
+  }
+
+
+
+
+
+/* ========================Блок о нас====================== */
+.frontInfo {
+      margin: 40px 0;
+      /* Задает отступы сверху и снизу для блока frontInfo */
+  }
+  
+  .frontInfo-section {
+      margin: 40px 0;
+      /* Устанавливает отступы для секций внутри frontInfo */
+  }
+  
+  .frontInfo-section:first-child {
+      margin-top: 0;
+      /* Убирает верхний отступ для первой секции */
+  }
+  
+  .frontInfo-section:last-child {
+      margin-bottom: 0;
+      /* Убирает нижний отступ для последней секции */
+  }
+  
+  .layout-wrap {
+      position: relative;
+      z-index: 1;
+      /* Задает относительное позиционирование для layout-wrap */
+  }
+  
+  @media screen and (min-width: 1280px) {
+      .wrapper, .layout-wrap {
+          padding: 0 30px;
+          /* Для экранов шириной 1280px и более задает внутренние отступы 30px по бокам */
+      }
+  }
+  
+  .frontInfo-container.__single {
+      width: 70%;
+      float: none;
+      margin: 0 auto;
+      /* Устанавливает ширину контейнера в 70%, центрирует его с помощью auto по бокам */
+  }
+  
+  .frontInfo-container::before, .frontInfo-container::after {
+      content: " ";
+      display: table;
+      /* Создает псевдоэлементы перед и после контента, чтобы исправить проблемы с обтеканием элементов */
+  }
+  
+  .frontInfo-container.__single .h2 {
+      text-align: center;
+      /* Центрирует заголовок h2 */
+  }
+  
+  .frontInfo .h2 {
+      margin-top: -8px;
+      margin-bottom: 15px;
+      /* Задает отступы сверху и снизу для заголовков h2 внутри блока frontInfo */
+  }
+  
+  .frontInfo-container.__single .frontInfo-text {
+      padding: 0;
+      /* Убирает внутренние отступы для frontInfo-text внутри single-контейнера */
+  }
+  
+  .frontInfo-text:last-child {
+      margin-bottom: 0;
+      /* Убирает нижний отступ у последнего элемента внутри блока frontInfo-text */
+  }
+  
+  .text {
+      line-height: 1.57;
+      color: #2e3232;
+      margin: 0 0 0.6em;
+      /* Устанавливает межстрочное расстояние, цвет текста и отступ снизу */
+  }
+  
+.h2 {
+      color: #171818;
+      font-weight: 700;
+      text-transform: uppercase;
+}
+  
+
+  .column {
+      display: flex;
+      flex-direction: row; 
+      align-items: flex-start;
+      justify-content: space-between;
+      /* Устанавливает флекс-бокс для выстраивания элементов в строку */
+      /* Выравнивание по верхнему краю и распределение пространства между элементами */
+  }
+  
+  .column h2 {
+      flex: 1;
+      margin-right: 20px;
+      /* Заголовок занимает одну колонку и имеет отступ справа */
+  }
+  
+  .column p {
+      flex: 1;
+      /* Абзац занимает одну колонку */
+  }
+  
+  @media screen and (max-width: 900px) {
+      .column {
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-row-gap: 20px;
+          /* Для экранов шириной менее 900px переключаемся на грид-систему с одной колонкой */
+          /* Добавляем промежуток в 20px между строками */
+      }
+  
+      .column h2, .column p, .about-title {
+          text-align: center;
+          /* Центрируем текст для заголовка, абзаца и блока "Про компанию" */
+      }
+  
+      .about-title {
+          font-size: 10px;
+          /* Задаем уменьшенный размер шрифта для заголовка на малых экранах */
+      }
+  }
+  
+  
+
+ 
+ /* ==========================Работа Блок наши преимущества=============================== */
+
+ /* =линия разделяющая секции о нас и наши преимущества=*/
+ .section-divider {
+      width: 100%; /* Ширина линии */
+      height: 2px; /* Высота линии */
+      background-color: var(--accent-color); /* Цвет линии*/
+      margin: 40px 0; /* Отступ сверху и снизу для расстояния между секциями */
+  }
+
+ /* =работа с иконками наш преимущества=*/
+
+
+.advantages .items {
+      margin-top: 50px; /* =отодвинем иконки от заголовка=*/
+}
+
+.advantages .items .item {
+      background-color: #fff;
+      text-align: center; /* =центрируем текст под иконкой=*/
+      padding: 1rem; /* определяем отступ между содержимым элемента и его границей (рамкой) */
+      display: flex;/* Устанавливаем флексбокс для элемента, что позволяет использовать гибкие раскладки */
+      flex-direction: column;/* Указываем направление флекс-элементов по вертикали (колонка) */
+      height: 100%;
+      transition: all .3s;/* при наведении меняем цвет */
+}
+
+.advantages .items .item:hover{
+      box-shadow: 0 15px 30px -20px rgba(0, 0, 0, 0.7);/* добавляем тень */
+}
+
+
+.advantages i {
+      font-size: 70px;/* =увеличиваем размер иконок=*/
+      color: #171818;
+      margin-right: 1rem;
+}
+
+.section-title {
+      text-align: center; /* Центрируем заголовок */
+      margin-bottom: 40px; /* Отступ снизу, чтобы отделить заголовок от следующего контента */
+  }
+  
+  .row.mt-5 {
+      margin-top: 150px; /* Отступ сверху для всего ряда, где заголовок */
+  }
+
+ /* ================Работа Блок с карточками товаров внизу открыт=======================*/
+
+ /*==работа с карточкой товара открыт==*/
+
+ .product-card {
+      transition: all .3s; /* Плавный переход для всех изменений стилей с продолжительностью 0.3 секунды */
+      border: 1px solid var(--accent-color); /* Устанавливаем рамку вокруг карточки продукта */
+      background-color: #fff;
+      position: relative;/* Позиционирование элемента относительно его нормального потока, что позволяет использовать свойства top, left, right, bottom для изменения положения элемента */
+
+}
+
+.product-card:hover {
+      box-shadow: 0 10px 20px -15px rgba(0,0,0,0.75); /* При наведении на карточку добавляется тень, которая создает эффект подъема */
+}
+
+.product-card-offer {
+      color: #060606;
+      position: absolute;/* Абсолютное позиционирование элемента внутри родительского блока */
+      top: 5px;
+      right: 5px;
+      text-transform: uppercase;
+}
+
+.product-card-offer > div {
+      border-radius: 50%; /* Делаем элемент круглым  */
+      width: 40px; /* Устанавливаем ширину элемента в 40px */
+      height: 40px; /* Устанавливаем высоту элемента в 40px */
+      line-height: 40px; /* Вертикально центрируем текст */
+      text-align: center; /* Горизонтально центрируем текст внутри элемента */
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 5px;/* Добавляем отступ снизу в 3px */
+}
+
+
+/* работа с фото карточки  */
+.product-thumb img {
+       max-width: 250px;/* задаем максимальную высоту картинки  */
+}
+
+.product-thumb {
+      text-align: center;/* центрируем картинку */
+}
+
+
+/* работа с описанием товара  */
+.product-details {
+    padding: 10px 20px;/* задаем отступы текста 10пикс с верху с низу 20 по бокам  */
+}
+
+
+/* работа с заголовком товара */
+.product-details h4 {
+      font-size: 1.2rem;
+}
+
+.product-details h4 a {
+      height: 45px; /* Устанавливаею высоту ссылки на 45px */
+      overflow: hidden; /* Скрываею содержимое, выходящее за пределы заданной высоты */
+      display: -webkit-box; /* Использую flex-контейнер для поддержки многолинейного текста */
+      -webkit-line-clamp: 2; /* Ограничиваем количество отображаемых строк до 2 */
+      -webkit-box-orient: vertical; /* Устанавливаем вертикальную ориентацию flex-контейнера */
+      text-decoration: none; /*уберу подчеркивание текста */
+      transition: all .3s;
+}
+
+.product-details h4 a:hover {
+      color: var(--accent-color);/* меняем цвет при наведении */
+}
+
+/* работа с описанием товара */
+.products-excerpt {
+      display: -webkit-box; /* Использую flex-контейнер для поддержки многолинейного текста */
+      -webkit-line-clamp: 2; /* Ограничиваем количество отображаемых строк до 2 */
+      -webkit-box-orient: vertical; /* Устанавливаем вертикальную ориентацию flex-контейнера */
+      text-decoration: none; /*уберу подчеркивание текста */
+      transition: all .3s;
+      height: 45px;
+      overflow: hidden;
+}
+
+.product-bottom-details {
+      border-top: 1px solid var(--accent-color);
+      padding-top: 0.5rem;
+}
+
+/* работа с ценой товаратовара */
+.product-price {
+      font-size: 18px;
+      color:var(--red-color);
+      font-weight: 600;
+}
+
+
+.product-price small {
+      color: var(--text-color); /* Применяеv основной цвет текста через переменную */
+      font-weight: 400; /* Устанавливаем нормальный вес шрифта (не жирный) */
+      text-decoration: line-through; /* Добавляею зачёркивание текста  для отображения старой цены */
+      font-size: 0.8rem; /* Уменьшаею размер шрифта до 0.8rem */
+}
+
+.owl-carousel-full .owl-item-img {
+      display: block;
+      width: auto;
+}
+
+.owl-carousel {
+      position: relative; /* Обеспечивает правильное позиционирование стрелок */
+    }
+    
+    .owl-carousel-nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      z-index: 10; /* Обеспечивает, чтобы стрелки отображались над другими элементами */
+    }
+    
+    .owl-prev, .owl-next {
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 18px;
+    }
+    
+    .owl-prev {
+      left: 10px; /* Отступ от левого края */
+    }
+    
+    .owl-next {
+      right: 10px; /* Отступ от правого края */
+    }
+    
+
+
+
+
+
+/*=========== работа схарактеристиками товара================ */
+.product-specs {
+      list-style: none; /* Убираем стандартные маркеры списка */
+      padding: 0;       /* Убираем отступы */
+      margin: 10px 0;   /* Добавляем небольшой отступ сверху и снизу */
+    }
+    
+    .product-specs li {
+      font-size: 0.67rem; /* Уменьшаем размер текста для характеристик */
+      color: #333;
+      font-weight: 400;
+      margin-bottom: 5px; /* Отступ между строками */
+      
+    }
+    .product-specs strong {
+      font-weight: 1200;
+    }
+
+.buy-now {
+      color: #000;;
+}
+
+
+.offer-hit {
+      background-color: var(--red-color)
+}
+.offer-new {
+      background-color: var(--accent-color);
+}
+
+
+
+  /*===============работа с карточкой товара закрыт==========================*/
+
+
+/* ================Работа с тестовой каруселью=======================*/
+
+.slider {
+      margin-bottom: 20px;
+      position: relative;
+ }
+
+ .slider .owl-item.active.center .slider-card {
+      transform: scale(1.15);
+      opacity: 1 ;
+      background-color:var(--gray-color);
+      color: #ffffff;
+      
+ }
+.slider-card {
+      background-color: #ffffff;
+      margin: 0 0px; /* Уменьшаем отступ между карточками */
+      border-radius: 10px;
+      box-shadow: 0 15px 45px -20px  #ffffff;
+      transform: scale(0.9);
+      opacity: 1;
+      transition: all 0.3s;
+      
+}
+
+.slider-card img {
+      border-radius: 5px 5px 0px 0px;
+}
+
+
+/* работа над  хар ноутбука */
+.slider-card:hover {
+      transform: scale(1);
+      opacity: 1;
+  }
+  
+  /* Скрываем список по умолчанию */
+.laptop-specs {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+  }
+  
+  /* Показываем список при наведении */
+.slider-card:hover .laptop-specs {
+      display: block;
+      opacity: 1;
+  }
+
+
+
+.product-detail h4 {
+      font-size: 1.2rem;
+}
+
+.product-detail h4 a {
+      height: 45px; /* Устанавливаею высоту ссылки на 45px */
+      overflow: hidden; /* Скрываею содержимое, выходящее за пределы заданной высоты */
+      display: -webkit-box; /* Использую flex-контейнер для поддержки многолинейного текста */
+      -webkit-line-clamp: 2; /* Ограничиваем количество отображаемых строк до 2 */
+      -webkit-box-orient: vertical; /* Устанавливаем вертикальную ориентацию flex-контейнера */
+      text-decoration: none; /*уберу подчеркивание текста */
+      transition: all .3s;
+}
+
+.product-detail {
+      background-color: #fff;
+}
+
+.product-detail h4 a:hover {
+      color: var(--accent-color);/* меняем цвет при наведении */
+}
+
+
+.owl-nav .owl-next, 
+.owl-nav .owl-prev {
+    position: absolute;
+    top: 45%; /* Подняли чуть выше, чтобы стрелки были по центру карточки */
+    font-size: 30px;
+    z-index: 1;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(45deg, #ff6b6b, #f06595); /* Градиентный фон */
+    border-radius: 50%; /* Закругленные углы */
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.3s ease; /* Плавный переход */
+}
+
+.owl-nav .owl-next:hover,
+.owl-nav .owl-prev:hover {
+    background: linear-gradient(45deg, #f06595, #ff6b6b); /* Изменение градиента при наведении */
+    transform: translateY(-50%) scale(1.1); /* Легкое увеличение при наведении */
+}
+
+/* Отдаляем стрелки в стороны от слайдера */
+.owl-nav .owl-prev {
+    left: -60px; /* Стрелка левее карточки */
+}
+
+.owl-nav .owl-next {
+    right: -60px; /* Стрелка правее карточки */
+}
+
+/* Скрытие стандартного текста стрелок и добавление иконок */
+.owl-nav .owl-next i, 
+.owl-nav .owl-prev i {
+    font-size: 1.5em; /* Размер иконок */
+    pointer-events: none; /* Отключаем взаимодействие с иконками */
+}
+
+
+
+/* Стили для цены */
+.price {
+      font-size: 1.25rem;
+      font-weight: bold;
+      text-align: center;
+      margin: 15px 0;
+      color: var(--text-color);
+      margin-top: -5px;
+      background-color: #ffffff;
+  }
+  
+  /* Стили для кнопки */
+  .order-btn {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+  }
+  
+  .order-btn button {
+      background-color: #8487ac;
+      color: rgb(255, 255, 255);
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+  }
+  
+  .order-btn button:hover {
+      background-color:var(--contrast-color);
+  }
+
+.laptop-specs {
+      font-size: 11px; /* Уменьшает размер шрифта до 14px */
+      margin: 0; /* Убирает отступы вокруг списка */
+      padding: 0; /* Убирает внутренние отступы */
+      margin-top: -15px; /* Поднимает список вверх относительно цены */
+      background-color: #ffffff;
+      color: #000;
+  }
+  
+.laptop-specs li {
+      line-height: 1.3; /* Увеличивает межстрочный интервал для улучшения читаемости */
+  }
+
+.section-title {
+      margin-top: -75px; /* Отрицательный отступ для поднятия заголовка выше */
+      text-align: center; /* Центрируем заголовок */
+  }
+  
+.section-title span {
+      font-size: 2rem; /* Измените размер шрифта, если необходимо */
+      color: #333; /* Установите цвет текста */
+      font-weight: bold; /* Установите жирный шрифт */
+  }
+
+ /* ================Работа Блок с carousel  закрыт=======================*/
+
+
+
+ 
+ /* ================ CARD в каруселе открыто=======================*/
+ .section-bg {
+      padding: 60px 0;
+      background: var(--accent-color);
+  }
+
+
+
+  .product-name  a {
+       /* Устанавливаею высоту ссылки на 45px */
+      overflow: hidden; /* Скрываею содержимое, выходящее за пределы заданной высоты */
+      display: -webkit-box; /* Использую flex-контейнер для поддержки многолинейного текста */
+      -webkit-line-clamp: 2; /* Ограничиваем количество отображаемых строк до 2 */
+      -webkit-box-orient: vertical; /* Устанавливаем вертикальную ориентацию flex-контейнера */
+      text-decoration: none; /*уберу подчеркивание текста */
+      transition: all .3s;
+}
+
+  .section-title {
+      margin-bottom: 25px;
+  }
+  
+  .section-title h2 {
+      position: relative;
+      font-size: 32px;
+      line-height: 1.4;
+      font-weight: 700;
+      letter-spacing: 1px;
+      z-index: 1;
+      text-transform: capitalize;
+      display: inline-block;
+      font-family: "Didact Gothic", sans-serif;
+  }
+  
+  
+  .single-product {
+      box-shadow: inset -2px -2px 8px white,
+       inset -2px -2px 12px rgba(255, 255, 255, 0.5),
+        inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+         inset 2px 2px 8px rgb(255, 255, 255);
+      padding: 30px;
+      border-radius: 12px;
+      margin-bottom: 50px;
+      background-color: #fbfafa;
+  }
+  
+  .single-product .product-thumb {
+      margin-bottom: 20px;
+  }
+  
+  .single-product .product-title {
+      margin-bottom: 20px;
+      text-align: center;
+      align-items: center;
+  }
+  
+  .single-product .product-title h3 {
+      font-family: "Didact Gothic", sans-serif;
+      font-size: 20px;
+      font-weight: 300;
+  }
+  
+  .single-product .product-title h3 a {
+      color: #292929;
+      text-decoration: none;
+  }
+  
+  .single-product .product-title h3 a:hover {
+      color: #7289ab;
+  }
+  
+  .single-product:hover {
+      box-shadow: -2px -2px 8px rgb(56, 55, 55),
+       -2px -2px 12px rgba(235, 232, 232, 0.5),
+        inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+         2px 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  img {
+      display: inline-block;
+      max-width: 100%;
+  }
+  
+  .product-btns
+  {
+      display: flex;
+      justify-content: center;
+  }
+  
+  a {
+      text-decoration: none;
+      cursor: pointer;
+      transition: .3s;
+      color: #292929;
+  }
+  
+  
+  .btn-small {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 8px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: inset -2px -2px 8px white,
+       inset -2px -2px 12px rgba(255, 255, 255, 0.5),
+        inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+         inset 2px 2px 8px rgba(0, 0, 0, 0.15);
+      transition: 0.4s;
+  }
+  
+  .btn-round {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      height: 45px;
+      width: 45px;
+      text-align: center;
+      line-height: 45px;
+      border-radius: 50%;
+      text-decoration: none;
+      box-shadow: -2px -2px 8px white, 
+      -2px -2px 12px rgba(255, 255, 255, 0.5), 
+      inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+       2px 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  
+  .btn-small:hover {
+      box-shadow: -2px -2px 8px white,
+       -2px -2px 12px rgba(255, 255, 255, 0.5),
+        inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+         2px 2px 8px rgba(0, 0, 0, 0.15);
+      color: #7289ab;
+      text-decoration: none;
+  }
+  
+  .btn-small:hover span {
+      display: inline-block;
+      transform: scale(0.98);
+  }
+  
+  .btn-round:hover {
+      box-shadow: inset -2px -2px 8px white,
+       inset -2px -2px 12px rgba(255, 255, 255, 0.5),
+        inset 2px 2px 4px rgba(255, 255, 255, 0.1),
+         inset 2px 2px 8px rgba(115, 67, 191, 0.15);
+      color: #7289ab;
+  }
+  
+  .button-center
+  {
+      justify-content: center;
+      text-align: center;
+  }
+
+  .bttn-def {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 14px 42px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-family: "Poppins", sans-serif;
+      box-shadow: -2px -2px 8px white, -2px -2px 12px rgba(255, 255, 255, 0.5), inset 2px 2px 4px rgba(255, 255, 255, 0.1), 2px 2px 8px rgba(0, 0, 0, 0.15);
+      transition: 0.4s;
+  }
+  
+  .bttn-def:hover {
+      color: #7289ab;
+      box-shadow: inset -2px -2px 8px white, inset -2px -2px 12px rgba(255, 255, 255, 0.5), inset 2px 2px 4px rgba(255, 255, 255, 0.1), inset 2px 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  .bttn-def:hover span {
+      display: inline-block;
+      transform: scale(0.98);
+  }
+
+
+
+
+
+ /* работа с возникающим списком характеристик товара открыта */
+  .card__data {
+      width: 280px;
+      background-color: var(--container-color);
+      padding: 1.5rem 2rem;
+      box-shadow: 0 8px 24px hsla(0, 0%, 0%, 0.15);
+      border-radius: 1rem;
+      position:absolute;
+      bottom: -3rem; /* Позиция относительно карточки */
+      left: 0;
+      right: 0;
+      margin-inline: auto;
+      opacity: 0; /* Изначально скрыто */
+      transition: opacity 0.3s; /* Плавный переход */
+      z-index: 1000; /* Убедитесь, что это значение достаточно высоко */
+  }
+  
+  .product-specs.card__data {
+      background-color: #ffffff; /* Устанавливаем непрозрачный белый фон */
+     
+      border: 1px solid #e0e0e0; /* Добавьте границу */
+      width: 100%; /* Задаем ширину списка равной ширине карточки */
+      margin: 0; /* Убираем любые отступы, если они есть */
+      padding: 0; /* Убираем внутренние отступы */
+      font-size: 1px; /* Уменьшаем размер текста */
+      font-weight: 300; /* Легкий вес шрифта */
+  }
+
+
+  .product-specs.card__data ul {
+      list-style-type: none; /* Убираем маркеры списка, если нужно */
+      padding: 0; /* Убираем внутренние отступы у ul */
+      margin: 0; /* Убираем внешние отступы у ul */
+  }
+
+  .card__article:hover .card__data {
+      opacity: 1; /* Показываем при наведении */
+      transform: translateY(-1rem); /* Немного сдвигаем вверх */
+  }
+  
+  .product-specs {
+      background-color: #ffffff;
+     
+  }
+
+  .product-specs ul {
+      list-style-type: none; /* Убираем маркеры */
+      padding: 0; /* Убираем отступы */
+  }
+ /* работа с возникающим списком характеристик товара закрыта */
+
+ /* ================CARD в каруселе закрыто=======================*/
+
+
+
+/* ============Работа с КАРТОЧКАМИ ВНУТРИ КОРЗИНЫ ОТКРЫТО=========== */
+
+.offCanvasCart-table .product-img-td {
+     width: 70px;
+     text-align: center;
+}
+
+.offCanvasCart-table a {
+      text-decoration: none;
+      display: block;
+}
+
+.offCanvasCart-table a:hover {
+      text-decoration: underline;
+}
+
+
+.offCanvasCart-table img {
+      max-width: 50px;
+}
+
+.button-cls {
+      background-color: #dc3545; /* Красный цвет фона */
+      color: white; /* Белый цвет иконки */
+      border: none; /* Убираем границу */
+      border-radius: 50%; /* Круглая кнопка */
+      width: 25px; /* Задаем размер кнопки */
+      height: 25px;
+      display: flex; /* Выравнивание содержимого */
+      justify-content: center;
+      align-items: center;
+      cursor: pointer; /* Курсор указывает на кликабельность */
+      transition: background-color 0.3s ease; /* Плавный переход цвета */
+  }
+  
+  .button-cls i {
+      font-size: 15px; /* Размер иконки */
+  }
+  
+  .button-cls:hover {
+      background-color: #c82333; /* Темный красный при наведении */
+  }
+  
+  .button-cls:active {
+      background-color: #a71d2a; /* Еще темнее при нажатии */
+  }
+  
+  .button-cls:focus {
+      outline: none; /* Убираем рамку при фокусе */
+  }
+/* ============Работа с КАРТОЧКАМИ ВНУТРИ КОРЗИНЫ ЗАКРЫТО=========== */
+
+
+
+
+/* ==========================Блок FOOTER OPEN========================================*/
+.footer {
+      background-color:rgb(205, 212, 222);
+      padding: 50px 0;
+      color: #000000;
+}
+
+.footer h4 {
+      color: var(--contrast-color);
+}
+
+.footer a {
+      color: #000;
+      text-decoration: none;
+      transition: all .3s;
+}
+
+.footer a:hover {
+      color: #fff;
+}
+
+.footer-icons {
+      list-style: none;
+      display: flex;/* ===ровняем иконки в ряд==========*/
+      gap:20px;/* ======отступ между иконками==========*/
+      padding: 0;
+      font-size: 25px;/* =======увел размер иконоки===========*/
+}
+
+
+/* ===работа с кнопкой NEED HELP open==========*/
+#top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #01befc;
+      opacity: .5;
+      border: 0;
+      font-size: 16px;
+      padding: 10px 20px; /* Внутренний отступ */
+      cursor: pointer; /* Иконка курсора при наведении */
+      display: inline-flex; /* Чтобы текст и иконка были на одной линии */
+      gap: 8px; /* Расстояние между иконкой и текстом */
+      border-radius: 25px;
+      transition: 0.3s;
+      z-index: 50;
+      
+}
+
+.help-text {
+      font-weight: bold; /* Жирный текст */
+      font-family: Arial, sans-serif; /* Шрифт */
+      font-size: 16px; /* Размер текста */
+      color: rgb(0, 0, 0); /* Цвет текста */
+    }
+    
+    #top i {
+      font-size: 18px; /* Размер иконки */
+    }
+
+    #top:hover {
+      opacity: 1; /* Прозрачность при наведении */
+    }
+
+/* ===работа с кнопкой NEED HELP close==========*/
+
+
+/* ============Модальное окно по открыто=========== */
+.modal {
+      display: none; 
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный черный фон */
+      justify-content: center;
+      align-items: center;
+    }
+    
+    /* Содержание модального окна */
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 300px;
+      text-align: center;
+      position: relative;
+    }
+    
+    /* Кнопка закрытия модального окна */
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    
+    /* Стили для формы */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    input[type="text"] {
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    
+    .btn-submit {
+      background-color: #01befc;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    .btn-submit:hover {
+      background-color: #029abf;
+    }
+/* ============Модальное окно по закрыто=========== */
+
+
+/* ==========================Блок FOOTER CLOSE========================================*/
+
+
+
+/* ================Main close=======================*/
+
+#carousel {
+      width: 96%; /* Измените значение на нужное (например, 70%, 60% и т.д.) */
+      margin: 0 auto; /* Центрирует карусель */
+      margin-top: -50px; /* Уберите или уменьшите верхний отступ */
+      margin-left: 84px; /* Измените значение на нужное вам */
+      border-top-left-radius: 20px; /* Закругляем только верхний левый угол */
+      overflow: hidden; /* Скрывает части изображений, выходящие за пределы карусели */
+  }
+  
+  .carousel-inner img {
+      height: 600px; /* Установите нужную высоту для изображений */
+      object-fit: cover; /* Обеспечивает правильное обрезание изображений */
+      width: 100%;
+      object-fit: cover; /* Обрезка изображения, чтобы оно заполнило карусель */
+  }
+  .carousel-inner img {
+      border-bottom-left-radius: 30px;
+      object-fit: cover; /* Подгонка изображения по размеру */
+  }
+
+
+  .carousel-title {
+      font-size: 3rem;
+      font-weight: bold;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+      color: white;
+  }
+  
+  .carousel-text {
+      font-size: 1.5rem;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+      color: #ffffff;
+  }
+  
+ 
+  
+  .carousel-caption {
+      bottom: 20%; /* Поднимаем текст немного вверх */
+  }

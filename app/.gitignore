@@ -1,0 +1,9 @@
+.vscode
+.idea
+
+db.sqlite3
+media/
+
+venv/
+.pylintrc
+__pycash__/

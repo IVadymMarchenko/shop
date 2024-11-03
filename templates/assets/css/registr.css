@@ -1,0 +1,44 @@
+
+
+
+.btn-icon {
+   
+   
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: background-color 0.3s ease, color 0.3s ease; /* Плавный переход цвета */
+}
+
+
+.btn-icon i {
+    color: #000; /* Цвет иконки */
+}
+
+.btn-icon:hover i {
+    color: #fff; /* Цвет иконки при наведении */
+}
+
+.google-button {
+    background-color: rgb(255, 77, 0);
+}
+
+.facebook-button {
+    background-color: rgb(70, 70, 221);
+}
+
+.google-button:hover {
+    background-color: rgb(255, 120, 0);
+}
+
+.facebook-button:hover {
+    background-color: rgb(46, 46, 242);
+}
+
+.register-button {
+   border-radius: 20px;
+   background-color: rgb(234, 213, 20);
+   color: rgb(255, 255, 255);
+}

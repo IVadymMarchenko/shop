@@ -1,0 +1,297 @@
+
+{% extends "main/base.html" %}
+{% load static %}
+
+
+
+<!doctype html>
+<html lang="en">
+
+
+<body>
+
+    {% block content%}
+    <!--=============================================Content panel==================================================-->
+    <main class="main">
+
+      <div id="carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="active" aria-current="true"
+            aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <a href="https://example.com/laptops">
+              <img
+                src="https://img.freepik.com/free-vector/gradient-isometric-laptop-technology-background_52683-5620.jpg?t=st=1728287800~exp=1728291400~hmac=e534df314436ca17de9869d4de3b64572b46d0b9d60abdf22c7a9bc8cb7e6117&w=1380"
+                class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h2 class="carousel-title">Лучшие ноутбуки для работы</h2>
+                <p class="carousel-text">Надежность и производительность для повседневных задач.</p>
+              </div>
+            </a>
+          </div>
+          <div class="carousel-item">
+            <a href="https://example.com/study-devices">
+              <img
+                src="https://img.freepik.com/free-photo/laptop-with-blank-screen-table-office-3d-render_1142-42219.jpg?t=st=1728287327~exp=1728290927~hmac=290ddb55163bc2795a711f5fbfd479fce79e27d98b5f8d6e23dd2064c533e892&w=1380"
+                class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h2 class="carousel-title">Устройства для учебы</h2>
+                <p class="carousel-text">Оптимизированные для обучения и продуктивности.</p>
+              </div>
+            </a>
+          </div>
+          <div class="carousel-item">
+            <a href="https://cdn.stocksnap.io/img-thumbs/960w/office-work_Q6PIRY9O7M.jpg">
+              <img src="https://cdn.stocksnap.io/img-thumbs/960w/office-work_Q6PIRY9O7M.jpg" class="d-block w-100"
+                alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h2 class="carousel-title">Игровые ПК</h2>
+                <p class="carousel-text">Максимальная мощность для игр и развлечений.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+
+
+      <!--Надпись топ покупаемых товаров-->
+      <nav class="catalogTabs-nav" style="margin-top: -10px;">
+        <ul class="catalogTabs-nav-box">
+          <li class="catalogTabs-nav-i __active top-goods" rel="global_action"><span class="catalogTabs-nav-a">Top
+              goods</span>
+          </li>
+        </ul>
+      </nav>
+
+      <!--============================Карусель верхняя товаров open=====================-->
+      <section id="slider" class="" style="margin-top: -30px;">
+        <div class="container">
+          <div class="slider owl-carousel">
+            <!-- Начало карточки продукта -->
+            {% for item in items %}
+            <div class="slider-card">
+              <a href="{% url 'goods:product' item.slug %}">
+              <div class="single-product card__article">
+                <div class="product-thumb image-wrapper d-flex justify-content-center align-items-center mb-4">
+                  <img src="{{item.image.url}}" alt="Революционный Android OnePlus" class="card__img">
+                </div>
+                <div class="product-title">
+                  <h3 class="product-name card__title">
+                    <a href="{% url 'goods:product' item.slug %}">{{item.name}}</a>
+                    <h6 class="product-id" style="color: #333; font-weight: bold; font-size: 14px; margin-bottom: 10px;">
+                      id:{{item.display_id}}
+                    </h6>
+                  </h3>
+                </div>
+                <div class="product-btns">
+                  <a href="#" class="btn-small mr-2">{{item.price}}</a>
+                  <a href="{% url 'cart:cart_add' item.slug %}" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" class="btn-round"><i class="fa-solid fa-money-check-dollar"></i></a>
+                </div>
+                <!-- Список характеристик -->
+                <div class="product-specs card__data">
+                  <ul>
+                    <li>
+                      <strong>CPU:</strong> {{item.processor_model}}
+                      <strong>Video card:</strong> {{item.videocard_model}}
+                      <strong>RAM:</strong> {{item.ram}}
+                      <strong>SSD memory:</strong> {{item.storage_capacity}}
+                      <strong>Battery:</strong> {{item.battery}}
+                      <strong>Category:</strong> {{item.category}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </a>
+            </div>
+            {% endfor %}
+            <!-- Конец карточки продукта -->
+
+          </div>
+        </div>
+      </section> <!--============================Карусель верхняя товаров close=====================-->
+
+      <div class="section-divider" style="margin-top: -70px;"></div> <!-- Линия между секциями -->
+
+      <!--============================О НАС open=====================-->
+      <section class="frontInfo" style="">
+        <div class="frontInfo-section __1">
+          <div class="layout-wrap">
+            <div class="frontInfo-container __1 __single">
+              <section class="frontInfo-about">
+                <article class="frontInfo-content">
+                  <h1 class="h2">NoteHub laptop store</h1>
+                  <div class="frontInfo-text "
+                    data-toggle-text="{&quot;show&quot;:&quot;Развернуть&quot;, &quot;hide&quot;:&quot;Свернуть&quot;}">
+                    <div class="text">
+                      <div class="about"><span style="font-size: 12px; text-transform: uppercase;"></span>
+                        <div class="column">
+                          <span class="about-title" style="font-size: 12px; text-transform: uppercase;"></span>
+                          <h2>NoteHub is a manufacturer<br>
+                            of workstations and desktop computers<br>
+                            under its own brand
+                          </h2>
+                          <p>Our goal is maximum performance for a minimal budget.!<br><br>
+                            Buying a workstation is a task, the solution of which affects the results of the success of
+                            your projects. Therefore, the best way is to trust the professionals. And we are ready to
+                            satisfy the most unexpected requests for solving your problems.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section><!--============================О НАС сlose=====================-->
+
+
+
+      <div class="section-divider " style="margin-top: -43px;"></div> <!-- Линия между секциями -->
+
+      <!--============================Карусель нижняя товаров open=====================-->
+      <section id="slider" class="" style="margin-top: 93px;">
+
+        <div class="container">
+          <div class="col-12">
+            <h2 class="section-title"><span>Sale</span></h2>
+          </div>
+
+          <div class="slider owl-carousel">
+            <!-- Начало карточки продукта -->
+            {% for item in items %}
+            {% if item.discout %}
+            <div class="slider-card">
+              <a href="{% url 'goods:product' item.slug %}">
+              <div class="single-product card__article">
+                <div class="product-thumb image-wrapper d-flex justify-content-center align-items-center mb-4">
+                  <img src="{{item.image.url}}" alt="Революционный Android OnePlus" class="card__img">
+                </div>
+                <div class="product-title">
+                  <h3 class="product-name card__title">
+                    <a href="{% url 'goods:product' item.slug %}">{{ item.name}}</a>
+                    <h6 class="product-id" style="color: #333; font-weight: bold; font-size: 14px; margin-bottom: 10px;">
+                      id:{{item.display_id}}
+                    </h6>
+                  </h3>
+                </div>
+                <div class="product-btns">
+                  <!-- Старая цена -->
+                   {% if item.discout %}
+                  <span class="btn-small mr-2"
+                    style="position: absolute; top: 10px; left: 10px; background-color: #fff; padding: 5px; text-decoration: line-through;  font-size: 25px; color: red;">
+                    {{item.price}}</span>
+                    <span class="discount" style="position: absolute; top: 10px; right: 10px; background-color: #fff; padding: 5px; font-size: 22px; color: #080396;">
+                      {{item.discout}}%</span>
+                      <a href="#" class="btn-small mr-2">{{item.sell_price}}</a>
+                      {%else%}
+                  <!-- Новая цена -->
+                  <a href="#" class="btn-small mr-2">{{item.price}}</a>
+                  {%endif%}
+                  
+                  <a href="{% url 'cart:cart_add' item.slug %}" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="#" class="btn-round"><i class="fa-solid fa-money-check-dollar"></i></a>
+                </div>
+                <!-- Список характеристик -->
+                <div class="product-specs card__data">
+                  <ul>
+                    <li>
+                      <strong>CPU:</strong> {{item.processor_model}}
+                      <strong>Video card:</strong> {{item.videocard_model}}
+                      <strong>RAM:</strong> {{item.ram}}
+                      <strong>SSD memory:</strong> {{item.storage_capacity}}
+                      <strong>Battery:</strong> {{item.battery}}
+                      <strong>Category:</strong> {{item.category}}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </a>
+            </div>
+            {%endif%}
+            {% endfor %}
+            <!-- Конец карточки продукта -->
+
+
+          </div>
+        </div>
+      </section> <!--============================Карусель нижняя товаров close=====================-->
+
+
+      <!--============================Наши преимущества open=====================-->
+      <section class="advantages clearfix">
+        <div class="container-fluid">
+          <div class="row mt-5">
+            <div class="col-12">
+              <h2 class="section-title" style="margin-top: -80px;"><span>Our advantages</span></h2>
+            </div>
+          </div>
+          <!--первый значек-->
+          <div class="items" style="margin-top: -65px;">
+            <div class="row gy-5"><!--gy-5 чтобы карточки не прилипали друг к другу-->
+              <div class="col-lg-3 col-sm-6">
+                <div class="item">
+                  <p><i class="fas fa-shipping-fast"></i></p>
+                  <p>Direct deliveries from the manufacturer</p>
+                </div>
+              </div>
+              <!--второй значек-->
+              <div class="col-lg-3 col-sm-6">
+                <div class="item">
+                  <p><i class="fas fa-cubes"></i></p>
+                  <p>Wide range of products</p>
+                </div>
+              </div>
+              <!--третий значек-->
+              <div class="col-lg-3 col-sm-6">
+                <div class="item">
+                  <p><i class="fas fa-hand-holding-usd"></i></p>
+                  <p>Nice prices</p>
+                </div>
+              </div>
+              <!--четвертый значек-->
+              <div class="col-lg-3 col-sm-6">
+                <div class="item">
+                  <p><i class="fas fa-solid fa-user-graduate"></i></p>
+                  <p>Consultations from professionals</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section><!--============================Наши преимущества close=====================-->
+      {% endblock%}
+      
+
+ 
+
+  </main>
+
+
+  <!--============================Работа над футером открыт=====================-->
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!--==подключаем jquery для карусели=-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- подключ джава скрипт -->
+  <script src="{% static 'assets/owlcarousel/owl.carousel.min.js' %}"></script><!--==подключаем карусель=-->
+  <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+
+</html>

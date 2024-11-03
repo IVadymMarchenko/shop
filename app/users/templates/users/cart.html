@@ -1,0 +1,129 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load carts_tags %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/css/cart.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!--CART OPEN-->
+        <div class="col-lg-8 mb-3">
+            <div class="card-content p3 h-100 bg-while">
+                <div class="table-responsive">
+                    <table class="table align-middle table-hover">
+                        <!-- Cart Header -->
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Photo</th>
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Qty</th>
+                                <th><i class="fa-solid fa-cart-shopping"></i></th>
+                            </tr>
+                        </thead>
+                        {% user_carts request as carts %}
+                        {% for cart in carts %}
+                        <tbody>
+                            <!-- Cart Item -->
+                            <tr>
+                                <td class="product-img-td">
+                                    <a href="{% url 'goods:product' cart.product.slug %}">
+                                        <img src="{{ cart.product.image.url }}">
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{% url 'goods:product' cart.product.slug %}" class="cart-content-title">{{ cart.product.name }}</a>
+                                </td>
+                                <td class="product-price">{{ cart.product.sell_price }}</td>
+                                <td>
+                                    <!-- Quantity Input with AJAX functionality -->
+                                    <input type="number" value="{{ cart.quantity }}" class="form-control cart-qty" data-url="{% url 'carts:cart_change' cart.product.id %}">
+                                </td>
+                                <td>
+                                    <a href="{% url 'carts:cart_remove' cart.id %}" class="btn-btn-danger" style="color:red; font-size: 24px; margin-top: -7px;">
+                                        <i class="fa-regular fa-circle-xmark"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                        {% endfor %}
+                        {% if carts %}
+                        <tfoot>
+                            <tr>
+                                <td colspan="5" class="text-end">
+                                    <button class="btn btn-outline-warning">Оформить заказ</button>
+                                    <button class="btn btn-outline-warning">Обновить корзину</button>
+                                </td>
+                            </tr>
+                        </tfoot>
+                        {% endif %}
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Cart Summary -->
+        <div class="col-lg-4 mb-3">
+            <div class="card-summary sidebar p-3">
+                <h5 class="card-summary-text"><span>Cart Summary</span></h5>
+                <div class="d-flex justify-content-between my-3">
+                    <h6 class="card-summary-text">Total</h6>
+                    <h6 class="card-summary-text total-price">{{ carts.total_price }}</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AJAX Script for Quantity Update -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.cart-qty').on('change', function(event) {
+        event.preventDefault(); // Предотвращаем перезагрузку страницы
+
+        let $input = $(this);
+        let url = $input.data('url');
+        let quantity = $input.val();
+
+        if (quantity < 1) {
+            quantity = 1;
+            $input.val(1);
+        }
+
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: {
+                'quantity': quantity,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(response) {
+                if (response.message) {
+                    // Обновляем значение инпута
+                    $input.val(response.quantity);
+
+                    // Логика для обновления общей суммы (предполагается, что у нас есть элемент с классом `.total-price`)
+                    let totalPrice = 0;
+                    $('.cart-qty').each(function() {
+                        const price = parseFloat($(this).closest('tr').find('.product-price').text());
+                        const qty = parseInt($(this).val(), 10);
+                        totalPrice += price * qty;
+                    });
+                    $('.total-price').text(totalPrice.toFixed(2));
+                }
+            },
+            error: function(xhr) {
+                if (xhr.status === 403) {
+                    alert("Please log in to update the cart.");
+                } else {
+                    console.error("An error occurred:", xhr.responseText);
+                }
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

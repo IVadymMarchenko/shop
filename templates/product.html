@@ -1,0 +1,637 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>product</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><!-- подключ шрифт -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><!-- подключ шрифт -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet"><!-- подключ шрифт -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <!-- подключ бутсрап -->
+  <link rel="stylesheet" href="assets/owlcarousel/owl.carousel.min.css"><!-- Подключаем стили для карусели -->
+  <link rel="stylesheet" href="assets/owlcarousel/owl.theme.default.min.css"><!-- Подключаем тему карусели -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <!-- подключаем иконки -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/category.css">
+  <link rel="stylesheet" href="assets/css/product.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header-top py-1"> <!-- отодвинем по оси Y кнопки и иконки вниз py-1 -->
+        <div class="container-fluid">
+          <div class="row">
+            <div class=" col-6 col-sm-4">
+              <!--задаем парамитр адаптивности sm>=576пикселей md>768px, lg>992px, xl>1200px по ширине-->
+              <div class="header-top-phone d-flex align-items-center h-100">
+                <!--центрируем телефон по центру и висоте align-items-center h-100 h-высота  -->
+                <i class="fa-solid fa-phone-volume"></i><!--подключили иконку телефона -->
+                <a href="tel:+88001234567" class="ms-2">+8800-123-45-67</a><!--сместим телефон в лево  class="ms-2" -->
+              </div>
+            </div>
+            <div class="col-sm-4 d-none d-sm-block">
+              <!--скрываем иконки на маленьких устройствах и задаем из появление только если ширина выше 576px d-none d-sm-block-->
+              <ul class="social-icons">
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-sm-4">
+              <!--  Окрыли d-flex justify-content-end прижимает к правому краю -->
+              <div class="d-flex justify-content-end"> <!-- d-flex justify-content-end прижимает к правому краю -->
+
+                <div class="btn-group me-2"><!--Отступ между кнопками me-2 значит переместить в право-->
+                  <div class="dropdown">
+                    <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Account
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Sign in</a></li>
+                      <li><a class="dropdown-item" href="#">Sign up</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="btn-group">
+                  <div class="dropdown">
+                    <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      En
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">UA</a></li>
+                      <li><a class="dropdown-item" href="#">RU</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- закрыли d-flex justify-content-end прижимает к правому краю -->
+
+
+            </div>
+          </div>
+        </div>
+      </div><!--header-top close-->
+
+      <!--header-middle open-->
+      <div class="header-middle bg-white py-4"><!-- отодвинем по оси Y кнопки и иконки вниз py-4 -->
+        <div class="container-fluid"><!-- создаем контейнер для того чтобы колонки занимали все ширину экрана -->
+          <div class="row align-items-center"><!-- выстраивает колонки по горизонтали -->
+            <div class="col-6 col-md-4"><!--созлаем 3 колонки так как у нас сетка равна 13 то col-md-4 -->
+              <a href="index.html" class="header-logo h1">NoteHub</a><!--ссылка для логотипа, h1 для размера текста -->
+            </div>
+
+
+            <!--==================КОРЗИНА cart-buttons-название класса, text-end-прижать к правому краю================-->
+            <div class="col-6 col-md-4 cart-buttons order-md-2 text-end d-lg-block">
+              <!--корзина cart-buttons-название класса, text-end-прижать к правому краю-->
+              <!--выдвижное поле корзины-->
+              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart"
+                aria-labelledby="#offcanvasCartLabel">
+                <div class="offcanvas-header">
+                  <h5 class="offcanvas-title" id="#offcanvasCartLabel">Offcanvas</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <!--товары внутри корзины открыто-->
+                  <div class="table-responsive">
+                    <table class="table offCanvasCart-table">
+                      <tbody>
+                        <!-- первая карточка товара внутри корзины открыто-->
+                        <tr>
+                          <td class="product-img-td"><a href="#"><img src="assets/img/1.jpg"></a></td>
+                          <!--фото оовара в корзине-->
+                          <td><a href="#">Ноутбук Dell Vostro</a></td><!--название товара в корзине-->
+                          <td>$100</td><!--цена товара в корзине-->
+                          <td>&times;1</td><!--количество товара в корзине-->
+                          <td><button class="btn-btn-danger button-cls"><i
+                                class="fa-regular fa-circle-xmark"></i></button></td>
+                          <!--кнопка удалить товар из корзины-->
+                        </tr> <!-- первая карточка товара внутри корзины открыто-->
+
+                        <!-- вторая карточка товара внутри корзины открыто-->
+                        <tr>
+                          <td class="product-img-td"><a href="#"><img src="assets/img/2.jpg"></a></td>
+                          <!--фото оовара в корзине-->
+                          <td><a href="#">Ноутбук Dell</a></td><!--название товара в корзине-->
+                          <td>$150</td><!--цена товара в корзине-->
+                          <td>&times;1</td><!--количество товара в корзине-->
+                          <td><button class="btn-btn-danger button-cls"><i
+                                class="fa-regular fa-circle-xmark"></i></button></td>
+                          <!--кнопка удалить товар из корзины-->
+                        </tr> <!-- вторая карточка товара внутри корзины открыто-->
+
+                        <!-- третяя карточка товара внутри корзины открыто-->
+                        <tr>
+                          <td class="product-img-td"><a href="#"><img src="assets/img/3.jpg"></a></td>
+                          <!--фото оовара в корзине-->
+                          <td><a href="#">Ноутбук Dell Vostro</a></td><!--название товара в корзине-->
+                          <td>$10</td><!--цена товара в корзине-->
+                          <td>&times;2</td><!--количество товара в корзине-->
+                          <td><button class="btn-btn-danger button-cls"><i
+                                class="fa-regular fa-circle-xmark"></i></button></td>
+                          <!--кнопка удалить товар из корзины-->
+                        </tr> <!-- третяя карточка товара внутри корзины открыто-->
+                      </tbody>
+
+                      <!-- итоговое количество товаров в корзине открыто-->
+                      <tfoot>
+                        <tr>
+                          <td colspan="4" class="text-end">Total: </td>
+                          <td class="text-end">$270</td><!-- итоговоя сумма-->
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div> <!--товары внутри корзины закрыто-->
+
+                  <!--==========кнопки внутри корзины открыто=========-->
+                  <div class="text-end mt-3">
+                    <a href="#" class="btn btn-outline-warning">Оформить заказ</a>
+                    <a href="#" class="btn btn-outline-secondary">Оформить заказ</a>
+                  </div>
+                  <!--===========кнопки внутри корзины закрыто========-->
+
+                  <div class="dropdown mt-3">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                      Dropdown button
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#" data-bs-dismiss="offcanvas">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div><!--==================КОРЗИНА окно закрыто================-->
+
+            <!--===============================форма для поиска товаров====================================-->
+            <div class="col-md-4" order-md-1 mt-2 mt-md-0><!--форма для поиска товаров-->
+              <form action="">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Seach" aria-label="Seach"
+                    aria-describedby="button-seach">
+                  <button class="btn btn-outline-secondary" type="submit" id="button-seach"><i
+                      class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div><!--header-middle close-->
+
+    </header>
+
+    <!--===============header-bottom NAVIGATION panel open=============-->
+    <div class="header-bottom sticky-top" id="header-nav"><!--sticky-top для фиксации панели при прокрутке-->
+      <nav class="navbar navbar-expand-xl bg-dark" data-bs-theme="dark">
+        <!--меняем цвет навигационной панели bg-dark, data-bs-theme="dark", парам xl сворач меню после 1200рх-->
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-start" id="offcanvasNavbar" tabindex="-1"
+            aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="category.html">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="#">
+                    Gaming laptops
+                  </a>
+                <li>
+                  <a class="nav-link " href="category.html">For work and study</a>
+                </li>
+                <li>
+                  <a class="nav-link " href="category.html">SecondHand Gaming laptops</a>
+                </li>
+                <li>
+                  <a class="nav-link " href="category.html">Acessories</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" data-bs-auto-close="outside">Catalog</a>
+                  <ul class="dropdown-menu dropdown-end">
+                    <li>
+                      <a class="dropdown-item" href="#">Shoes</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Jeans</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!--иконка корзины в навигац панели-->
+          <div>
+            <!--иконка корзины в навигац панели d-block d-lg-none показ только при сворачивании меню-->
+            <button class="btn p-10" id="cart-open" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasCart" aria-controls="offcanvasCart"><!--сдвинем значек в лево p-10-->
+              <i
+                class="fa-solid fa-cart-arrow-down"></i><!--иконка корзины <i class="fa-solid fa-cart-arrow-down"></i>-->
+              <span
+                class="badge text-bg-warning card-badge bg-warning">1</span><!--badge text-bg-warning для отображение количества товаров в корзине-->
+            </button>
+          </div>
+
+        </div>
+      </nav>
+    </div><!--header-bottom NAVIGATION panel close-->
+
+
+    <!--=============================================Content panel==================================================-->
+
+
+    <main class="main">
+      <!--============Описание товара OPEN=============-->
+      <div class="content-fluid">
+        <div class="row">
+          <div class="col-md-5 col-lg-4 mb-3">
+            <div class="bg-white ">
+              <!--============Карусель откр=============-->
+              <div id="carouselExampleFade" class="carousel carousel-dark slide carousel-fade">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="assets/img/1.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="assets/img/2.jpg" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="assets/img/3.jpg" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                  data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                  data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div><!--============Карусель закр=============-->
+            </div>
+          </div>
+          <!--============Инфо о товаре открыт=============-->
+          <div class="col-md-7 col-lg-8 mb-3">
+            <div class="bg-white product-content p3 ">
+              <!--============h-100 чтоб колонки были одной высоты=============-->
+              <h1 class="title-section"><span class="product-name"> Product name</span></h1>
+              <div class="product-price">
+                <small> $70</small>
+                $65
+              </div>
+              <!--=======Подробное описание товара открыто=============-->
+              <div class="row mt-3">
+                <div class="col-12">
+                  <div class="product-contact-details bg-white p-4">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab"
+                          data-bs-target="#description-tab-pane" type="button" role="tab"
+                          aria-controls="description-tab-pane" aria-selected="true">Description</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="features-tab" data-bs-toggle="tab"
+                          data-bs-target="#features-tab-pane" type="button" role="tab" aria-controls="features-tab-pane"
+                          aria-selected="false">Features</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="reviews-tab" data-bs-toggle="tab"
+                          data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane"
+                          aria-selected="false">Reviews</button>
+                      </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                      <!--============description open=============-->
+                      <div class="tab-pane fade show active" id="description-tab-pane" role="tabpanel"
+                        aria-labelledby="description-tab" tabindex="0">
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates ad, exercitationem
+                          inventore
+                          reprehenderit quas saepe, architecto suscipit maiores blanditiis ipsam esse sed vero totam
+                          quo,
+                          maxime aliquid temporibus iste nam.</p>
+                        <p>Officiis corrupti error cupiditate quaerat enim et a excepturi animi, rerum, sunt explicabo
+                          magni,
+                          dolores aperiam velit? Illo excepturi facere impedit, voluptas eaque doloribus adipisci
+                          necessitatibus dolores ullam? Rem, possimus.</p>
+                        <p>Quibusdam fugit assumenda odit facere vel aperiam, cum, dignissimos recusandae totam laborum
+                          sed
+                          animi, beatae doloremque inventore. Repudiandae, dolorum aliquid magni consequatur minus
+                          expedita
+                          distinctio odio deserunt quos aliquam qui?</p>
+                      </div><!--============description close=============-->
+
+                      <!--============features open=============-->
+                      <div class="tab-pane fade" id="features-tab-pane" role="tabpanel" aria-labelledby="features-tab"
+                        tabindex="0">
+                        <section class="group">
+                          <h3 class="sub-heading">Экран</h3>
+                          <dl class="list">
+                            <div class="item">
+                              <dt class="label"><span>Диагональ экрана</span></dt>
+                              <dd class="value">15.6"</dd>
+                            </div>
+                            <div class="item">
+                              <dt class="label"><span>Частота обновления экрана</span></dt>
+                              <dd class="value">60 Гц</dd>
+                            </div>
+                            <div class="item">
+                              <dt class="label"><span>Тип экрана</span></dt>
+                              <dd class="value">IPS</dd>
+                            </div>
+                            <div class="item">
+                              <dt class="label"><span>Разрешение</span></dt>
+                              <dd class="value">1920x1080</dd>
+                            </div>
+                            <div class="item">
+                              <dt class="label"><span>Покрытие экрана</span></dt>
+                              <dd class="value">Матовое</dd>
+                            </div>
+                          </dl>
+
+                          <h3 class="sub-heading">Процессор</h3>
+                          <dl class="list">
+                            <div class="item">
+                              <dt class="label"><span>Модель процессора</span></dt>
+                              <dd class="value">Intel Core i5-12450H</dd>
+                            </div>
+                            <div class="item">
+                              <dt class="label"><span>Частота процессора</span></dt>
+                              <dd class="value">2.0 - 4.4 ГГц</dd>
+                            </div>
+                            <div class="item">
+                              <dt class="label"><span>Поколение</span></dt>
+                              <dd class="value">12-е Alder Lake</dd>
+                            </div>
+                          </dl>
+
+                          <h3 class="sub-heading">Оперативная память</h3>
+                          <dl class="list">
+                            <div class="item">
+                              <dt class="label"><span>Объем памяти</span></dt>
+                              <dd class="value">16 GB DDR4</dd>
+                            </div>
+                          </dl>
+
+                          <h3 class="sub-heading">Видеокарта</h3>
+                          <dl class="list">
+                            <div class="item">
+                              <dt class="label"><span>Модель видеокарты</span></dt>
+                              <dd class="value">NVIDIA GeForce RTX 3050</dd>
+                            </div>
+                            <div class="item">
+                              <dt class="label"><span>Объем памяти</span></dt>
+                              <dd class="value">4 GB GDDR6</dd>
+                            </div>
+                          </dl>
+
+                          <h3 class="sub-heading">Накопитель</h3>
+                          <dl class="list">
+                            <div class="item">
+                              <dt class="label"><span>Тип накопителя</span></dt>
+                              <dd class="value">SSD</dd>
+                            </div>
+                            <div class="item">
+                              <dt class="label"><span>Объем накопителя</span></dt>
+                              <dd class="value">512 GB</dd>
+                            </div>
+                          </dl>
+                        </section>
+                      </div><!--============features close=============-->
+
+                      <!--============Отзывы открыто=============-->
+                      <!--============Отзывы открыто=============-->
+                      <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab"
+                        tabindex="0">
+                        <section class="reviews">
+                          <h3 class="sub-heading">Отзывы</h3>
+
+                          <!-- Список существующих отзывов -->
+                          <!-- Отзыв 1 -->
+                          <div class="review-item">
+                            <div class="review-header">
+                              <span class="review-author">Иван Иванов</span>
+                              <span class="review-rating">★★★★★</span>
+                            </div>
+                            <div class="review-body">
+                              <p>Отличный ноутбук! Пользуюсь уже месяц, все устраивает. Хорошая производительность и
+                                экран.</p>
+                            </div>
+                          </div>
+
+                          <!-- Отзыв 2 -->
+                          <div class="review-item">
+                            <div class="review-header">
+                              <span class="review-author">Мария Петрова</span>
+                              <span class="review-rating">★★★★☆</span>
+                            </div>
+                            <div class="review-body">
+                              <p>Неплохая модель, но батарея держит не так долго, как хотелось бы. В целом довольна
+                                покупкой.</p>
+                            </div>
+                          </div>
+
+                          <!-- Форма для добавления отзыва -->
+                          <h3 class="sub-heading">Оставьте свой отзыв</h3>
+                          <form class="review-form" onsubmit="return validateForm();">
+                            <div class="form-group">
+                              <label for="name">Ваше имя:</label>
+                              <input type="text" id="name" name="name" required placeholder="Введите ваше имя">
+                            </div>
+
+                            <!-- Звездный рейтинг -->
+                            <div class="form-group">
+                              <label>Оценка:</label>
+                              <div class="star-rating">
+                                <span class="star" data-value="5">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="1">★</span>
+                              </div>
+                              <input type="hidden" id="rating" name="rating" required>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="review">Ваш отзыв:</label>
+                              <textarea id="review" name="review" required placeholder="Напишите ваш отзыв"></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Отправить отзыв</button>
+                          </form>
+                        </section>
+                      </div>
+                      <!--============Отзывы закрыто=============-->
+
+                    </div>
+                  </div>
+                </div>
+              </div> <!--=======Подробное описание товара закрыто=============-->
+
+              <div class="product-add2card">
+                <div class="input-group">
+                  <input type="number" class="form-control" value="1" min="1">
+                  <button class="btn btn-warning"><i class='fas fa-shopping-cart'></i>Add to the cart</button>
+                </div>
+              </div>
+              <!--============рекомендац открыт=============-->
+              <div class="row mt-3">
+                <div class="col-lg-4 mb-2">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h5 class="card-title"><i class="fa-solid fa-shield-halved"></i> Guarantee</h5>
+                      <ul class="list-unstyled">
+                        <li>return within 14 days</li>
+                        <li>quality assurance</li>
+                        <li>only original components</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 mb-2">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h5 class="card-title"><i class="fa-solid fa-money-bill"></i> Guarantee</h5>
+                      <ul class="list-unstyled">
+                        <li>return within 14 days</li>
+                        <li>quality assurance</li>
+                        <li>only original components</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 mb-2">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h5 class="card-title"><i class="fa-solid fa-truck-fast"></i> Guarantee</h5>
+                      <ul class="list-unstyled">
+                        <li>return within 14 days</li>
+                        <li>quality assurance</li>
+                        <li>only original components</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div> <!--============рекомендац закрыт=============-->
+            </div>
+
+          </div><!--============Инфо о товаре закрыт=============-->
+
+        </div>
+
+      </div><!--============Описание товара CLOSE=============-->
+
+
+      <!--============================Работа над футером открыт=====================-->
+      <footer class="footer">
+        <div class="container-fluid">
+          <div class="row">
+            <!--==первая колонка в футере окрыта====-->
+            <div class="col-md-3 col-6">
+              <h4>Information</h4>
+              <ul class="list-unstyled">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Payment</a></li>
+                <li><a href="#">Delivery</a></li>
+                <li><a href="#">Contacts</a></li>
+              </ul>
+            </div><!--==первая колонка в футере закрыта====-->
+
+            <!--==вторая колонка в футере окрыта====-->
+            <div class="col-md-3 col-6">
+              <h4>Working hours</h4>
+              <ul class="list-unstyled">
+                <li>Kyiv, str.Tarasa Shevchenko</li>
+                <li>mon-fri: 9:00-18:00</li>
+              </ul>
+            </div><!--==вторая колонка в футере закрыта====-->
+
+            <!--==третья колонка в футере окрыта====-->
+            <div class="col-md-3 col-6">
+              <h4>Contacts</h4>
+              <ul class="list-unstyled">
+                <li><a href="tel:1234567890">123-456-7890</a></li>
+                <li><a href="#">Contacts</a></li>
+              </ul>
+            </div><!--==третья колонка в футере закрыта====-->
+
+            <!--==четвертая колонка в футере окрыта====-->
+            <div class="col-md-3 col-6">
+              <h4>Follow us</h4>
+              <ul class="footer-icons">
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+              </ul>
+            </div><!--==четвертая колонка в футере закрыта====-->
+
+          </div>
+        </div>
+      </footer><!--============================Работа над футером закрыт=====================-->
+
+      <button type="button" id="top">
+        <i class="fa-solid fa-message"><span class="help-text"> Need help?</span></i>
+      </button>
+
+      <!-- Модальное окно -->
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Enter your phone number and we will contact you</h2>
+          <form>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+            <button type="submit" class="btn-submit">Submit</button>
+          </form>
+        </div>
+      </div>
+      <!-- Модальное окно закрыто -->
+
+  </div>
+  </div>
+  </div>
+
+
+  </main>
+  <!--============================Работа над футером открыт=====================-->
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!--==подключаем jquery для карусели=-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- подключ джава скрипт -->
+  <script src="assets/owlcarousel/owl.carousel.min.js"></script><!--==подключаем карусель=-->
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

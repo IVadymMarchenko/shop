@@ -1,0 +1,187 @@
+
+
+
+
+
+ /* работа с панель хлебные крошки окрыта */
+.breadcrumbs {
+    margin: 30px 0;
+    background-color: #fff;
+    padding: 1rem;
+}
+
+.breadcrumbs ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumbs a {
+        text-decoration: none;
+        color: #222276;
+        transition: all .5s;
+        margin-right: 0.5rem;/* отступ между ссылками*/
+}
+
+.breadcrumbs a:hover {
+    color: #01befc;
+}
+
+.breadcrumbs a::after {
+    content: '/';/* разделитель*/
+    padding-left: 0.5rem;
+    color: #222276;
+}
+
+ /* -----------работа с панель хлебные крошки закрыта--------- */
+
+  /* -------------------работа с SIDEBAR OPEN------------------ */
+
+.sidebar {
+    background-color: #ffffff;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.filter-block:not(:last-child) {
+    margin-bottom: 2rem;
+}
+
+.filter-block .form-check {
+        margin-bottom: -0.2rem; /* отступ между выбором в фильтре*/
+}
+
+.form-check-input:focus {
+    border-color: #01befc;
+    box-shadow: none;
+}
+
+.form-check-input:checked{
+    background-color: #01befc;/* цвет галочек в фильтре*/
+}
+
+.filter-block .badge {
+    color: #0c0c0c;
+}
+
+
+
+   /* -------------------работа с SIDEBAR CLOSE--------------- */
+
+
+/* -------------------работа с Карточкой товара открыта--------------- */
+
+.slider-card, .single-product {
+    margin: 0; /* Убираем любые внешние отступы */
+    padding: 0; /* Убираем внутренние отступы */
+}
+/* -------------------работа с Карточкой товара закрыта--------------- */
+
+
+/* -------------------работа с ПАГИНАЦИЕЙ ОКРЫТА--------------- */
+
+.page-link {
+    color:#222276;
+}
+
+.active>.page-link,.page-link.active {
+    background-color: #01befc;
+    border-color: #222276;
+}
+.pagination {
+    justify-content: center; /* Центрируем содержимое */
+    display: flex; /* Используем flexbox для управления расположением */
+    margin: 0; /* Убираем отступы */
+    padding: 0; /* Убираем padding */
+    margin-top: 20px;
+}
+
+
+/* -------------------работа с ПАГИНАЦИЕЙ ЗАРЫТА--------------- */
+
+
+/* -------------------работа с ФИЛЬТРАМИ ОТКРЫТА--------------- */
+ /* Убираем нижний отступ для кнопок */
+ .sidebar .filter-block button {
+    margin-bottom: 3px !important;
+  }
+
+  /* Уменьшаем отступ между блоками фильтров */
+  .sidebar .filter-block {
+    margin-bottom: 7px;
+  }
+
+
+  .sidebar{
+    background-color: #e5e8ec;
+    width: 290px;
+    padding-top: 25px;/* сдвигаем вниз фильтры */
+  }
+
+
+  .collapse-toggle {
+    cursor: pointer; /* Чтобы указатель мыши менялся на указатель при наведении #e9ecef */
+    font-size: 16px;
+    color: #6c757d; /* Цвет, как у ссылок */
+    text-decoration: none; /* Подчеркнуть текст для наглядности */
+  }
+  
+  .collapse-toggle:hover {
+    color: #0056b3; /* Темный оттенок синего при наведении */
+  }
+  
+  .scrollable-filter {
+    max-height: 200px; /* Ограничение по высоте */
+    overflow-y: auto; /* Скроллинг, если фильтры не помещаются */
+  }
+
+  .arrow {
+    display: inline-block;
+    margin-right: 5px; /* Отступ между стрелкой и текстом */
+    font-size: 0.8rem; /* Уменьшение размера стрелки */
+    transition: transform 0.3s; /* Плавный переход при повороте стрелки */
+  }
+  
+  .collapse-toggle.collapsed .arrow {
+    transform: rotate(90deg); /* Поворот стрелки на 90 градусов, если фильтр закрыт */
+  }
+
+
+/* Полоса прокрутки */
+.scrollable-filter::-webkit-scrollbar {
+    width: 5px; /* Ширина полосы прокрутки */
+  }
+  
+  .scrollable-filter::-webkit-scrollbar-track {
+    background: #676bd7; /* Цвет фона полосы прокрутки */
+  }
+  
+  .scrollable-filter::-webkit-scrollbar-thumb {
+    background: #888; /* Цвет ползунка полосы прокрутки */
+    border-radius: 10px; /* Закругленные края ползунка */
+  }
+
+  /* -------------------работа с ФИЛЬТРАМИ ЗАКРЫТА--------------- */
+
+
+  /* -------------------работа с отсупами карточек от фильтров открыто--------------- */
+
+.catalog__middle {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+
+.catalog__middle-col--left {
+    order: 1;
+}
+.catalog__middle-col--left, .catalog__middle-col--right {
+    flex: 0 0 0px;
+    max-width: 1250px;
+    will-change: min-height;
+}
+/* -------------------работа с отсупами карточек от фильтров закрыто--------------- */
+
+

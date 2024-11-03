@@ -1,0 +1,40 @@
+
+
+
+
+
+.card-content table img {
+    max-width: 100px;
+    
+}
+
+.card-content table td {
+    padding: 0.6rem;
+}
+
+
+.cart-content-title {
+    text-decoration: none;
+    display: block;
+}
+
+.cart-qty {
+    width: 70px;
+}
+
+
+.card-summary {
+    background-color: white; /* Белый фон для блока */
+    border: 1px solid #ddd;  /* Опционально: граница */
+    padding: 20px;           /* Опционально: отступы */
+    margin-top: 39px;        /* Отступ сверху */;
+
+  }
+
+.card-content {
+    margin-top: 39px;  
+}
+
+.card-summary-text {
+    color: black;
+}

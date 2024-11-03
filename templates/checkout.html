@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><!-- подключ шрифт -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><!-- подключ шрифт -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet"><!-- подключ шрифт -->
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <!-- подключ бутсрап -->
+  <link rel="stylesheet" href="assets/owlcarousel/owl.carousel.min.css"><!-- Подключаем стили для карусели -->
+  <link rel="stylesheet" href="assets/owlcarousel/owl.theme.default.min.css"><!-- Подключаем тему карусели -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <!-- подключаем иконки -->
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/category.css">
+  <link rel="stylesheet" href="assets/css/product.css">
+  <link rel="stylesheet" href="assets/css/registr.css">
+  <link rel="stylesheet" href="assets/css/cart.css">
+</head>
+
+<body>
+  <div class="wrapper">
+    <header class="header">
+      <div class="header-top py-1"> <!-- отодвинем по оси Y кнопки и иконки вниз py-1 -->
+        <div class="container-fluid">
+          <div class="row">
+            <div class=" col-6 col-sm-4">
+              <!--задаем парамитр адаптивности sm>=576пикселей md>768px, lg>992px, xl>1200px по ширине-->
+              <div class="header-top-phone d-flex align-items-center h-100">
+                <!--центрируем телефон по центру и висоте align-items-center h-100 h-высота  -->
+                <i class="fa-solid fa-phone-volume"></i><!--подключили иконку телефона -->
+                <a href="tel:+88001234567" class="ms-2">+8800-123-45-67</a><!--сместим телефон в лево  class="ms-2" -->
+              </div>
+            </div>
+            <div class="col-sm-4 d-none d-sm-block">
+              <!--скрываем иконки на маленьких устройствах и задаем из появление только если ширина выше 576px d-none d-sm-block-->
+              <ul class="social-icons">
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+              </ul>
+            </div>
+            <div class="col-6 col-sm-4">
+              <!--  Окрыли d-flex justify-content-end прижимает к правому краю -->
+              <div class="d-flex justify-content-end"> <!-- d-flex justify-content-end прижимает к правому краю -->
+
+                <div class="btn-group me-2"><!--Отступ между кнопками me-2 значит переместить в право-->
+                  <div class="dropdown">
+                    <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      Account
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Sign in</a></li>
+                      <li><a class="dropdown-item" href="#">Sign up</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="btn-group">
+                  <div class="dropdown">
+                    <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                      aria-expanded="false">
+                      En
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">UA</a></li>
+                      <li><a class="dropdown-item" href="#">RU</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- закрыли d-flex justify-content-end прижимает к правому краю -->
+
+
+            </div>
+          </div>
+        </div>
+      </div><!--header-top close-->
+
+      <!--header-middle open-->
+      <div class="header-middle bg-white py-4"><!-- отодвинем по оси Y кнопки и иконки вниз py-4 -->
+        <div class="container-fluid"><!-- создаем контейнер для того чтобы колонки занимали все ширину экрана -->
+          <div class="row align-items-center"><!-- выстраивает колонки по горизонтали -->
+            <div class="col-6 col-md-4"><!--созлаем 3 колонки так как у нас сетка равна 13 то col-md-4 -->
+              <a href="index.html" class="header-logo h1">NoteHub</a><!--ссылка для логотипа, h1 для размера текста -->
+            </div>
+
+
+            <!--==================КОРЗИНА cart-buttons-название класса, text-end-прижать к правому краю================-->
+            <div class="col-6 col-md-4 cart-buttons order-md-2 text-end d-lg-block">
+              <!--корзина cart-buttons-название класса, text-end-прижать к правому краю-->
+              <!--выдвижное поле корзины-->
+              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasCart"
+                aria-labelledby="#offcanvasCartLabel">
+                <div class="offcanvas-header">
+                  <h5 class="offcanvas-title" id="#offcanvasCartLabel">Offcanvas</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <!--товары внутри корзины открыто-->
+                  <div class="table-responsive">
+                    <table class="table offCanvasCart-table">
+                      <tbody>
+                        <!-- первая карточка товара внутри корзины открыто-->
+                        <tr>
+                          <td class="product-img-td"><a href="#"><img src="assets/img/1.jpg"></a></td>
+                          <!--фото оовара в корзине-->
+                          <td><a href="#">Ноутбук Dell Vostro</a></td><!--название товара в корзине-->
+                          <td>$100</td><!--цена товара в корзине-->
+                          <td>&times;1</td><!--количество товара в корзине-->
+                          <td><button class="btn-btn-danger button-cls"><i
+                                class="fa-regular fa-circle-xmark"></i></button></td>
+                          <!--кнопка удалить товар из корзины-->
+                        </tr> <!-- первая карточка товара внутри корзины открыто-->
+
+                        <!-- вторая карточка товара внутри корзины открыто-->
+                        <tr>
+                          <td class="product-img-td"><a href="#"><img src="assets/img/2.jpg"></a></td>
+                          <!--фото оовара в корзине-->
+                          <td><a href="#">Ноутбук Dell</a></td><!--название товара в корзине-->
+                          <td>$150</td><!--цена товара в корзине-->
+                          <td>&times;1</td><!--количество товара в корзине-->
+                          <td><button class="btn-btn-danger button-cls"><i
+                                class="fa-regular fa-circle-xmark"></i></button></td>
+                          <!--кнопка удалить товар из корзины-->
+                        </tr> <!-- вторая карточка товара внутри корзины открыто-->
+
+                        <!-- третяя карточка товара внутри корзины открыто-->
+                        <tr>
+                          <td class="product-img-td"><a href="#"><img src="assets/img/3.jpg"></a></td>
+                          <!--фото оовара в корзине-->
+                          <td><a href="#">Ноутбук Dell Vostro</a></td><!--название товара в корзине-->
+                          <td>$10</td><!--цена товара в корзине-->
+                          <td>&times;2</td><!--количество товара в корзине-->
+                          <td><button class="btn-btn-danger button-cls"><i
+                                class="fa-regular fa-circle-xmark"></i></button></td>
+                          <!--кнопка удалить товар из корзины-->
+                        </tr> <!-- третяя карточка товара внутри корзины открыто-->
+                      </tbody>
+
+                      <!-- итоговое количество товаров в корзине открыто-->
+                      <tfoot>
+                        <tr>
+                          <td colspan="4" class="text-end">Total: </td>
+                          <td class="text-end">$270</td><!-- итоговоя сумма-->
+                        </tr>
+                      </tfoot>
+                    </table>
+                  </div> <!--товары внутри корзины закрыто-->
+
+                  <!--==========кнопки внутри корзины открыто=========-->
+                  <div class="text-end mt-3">
+                    <a href="#" class="btn btn-outline-warning">Оформить заказ</a>
+                    <a href="#" class="btn btn-outline-secondary">Оформить заказ</a>
+                  </div>
+                  <!--===========кнопки внутри корзины закрыто========-->
+                </div>
+              </div>
+
+            </div><!--==================КОРЗИНА окно закрыто================-->
+
+            <!--===============================форма для поиска товаров====================================-->
+            <div class="col-md-4" order-md-1 mt-2 mt-md-0><!--форма для поиска товаров-->
+              <form action="">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Seach" aria-label="Seach"
+                    aria-describedby="button-seach">
+                  <button class="btn btn-outline-secondary" type="submit" id="button-seach"><i
+                      class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+      </div><!--header-middle close-->
+
+    </header>
+
+    <!--===============header-bottom NAVIGATION panel open=============-->
+    <div class="header-bottom sticky-top" id="header-nav"><!--sticky-top для фиксации панели при прокрутке-->
+      <nav class="navbar navbar-expand-xl bg-dark" data-bs-theme="dark">
+        <!--меняем цвет навигационной панели bg-dark, data-bs-theme="dark", парам xl сворач меню после 1200рх-->
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="offcanvas offcanvas-start" id="offcanvasNavbar" tabindex="-1"
+            aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="category.html">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link " href="#">
+                    Gaming laptops
+                  </a>
+                <li>
+                  <a class="nav-link " href="category.html">For work and study</a>
+                </li>
+                <li>
+                  <a class="nav-link " href="category.html">SecondHand Gaming laptops</a>
+                </li>
+                <li>
+                  <a class="nav-link " href="category.html">Acessories</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false" data-bs-auto-close="outside">Catalog</a>
+                  <ul class="dropdown-menu dropdown-end">
+                    <li>
+                      <a class="dropdown-item" href="#">Shoes</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#">Jeans</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!--иконка корзины в навигац панели-->
+          <div>
+            <!--иконка корзины в навигац панели d-block d-lg-none показ только при сворачивании меню-->
+            <button class="btn p-10" id="cart-open" type="button" data-bs-toggle="offcanvas"
+              data-bs-target="#offcanvasCart" aria-controls="offcanvasCart"><!--сдвинем значек в лево p-10-->
+              <i
+                class="fa-solid fa-cart-arrow-down"></i><!--иконка корзины <i class="fa-solid fa-cart-arrow-down"></i>-->
+              <span
+                class="badge text-bg-warning card-badge bg-warning">1</span><!--badge text-bg-warning для отображение количества товаров в корзине-->
+            </button>
+          </div>
+
+        </div>
+      </nav>
+    </div><!--header-bottom NAVIGATION panel close-->
+
+
+    <!--=============================================Content panel==================================================-->
+
+
+    <main class="main">
+
+      <div class="container-fluid">
+
+        <form class="needs-validation" novalidate>
+          <div class="row">
+            <!--CART OPEN-->
+            <div class="col-lg-8 mb-3">
+              <div class="checkout-content p-3 h-100 bg-white">
+                <h1 class="card-summary-text h4"><span>Placing an order</span></h1>
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Kovalenko Igor" required>
+                    <div class="invalid-feedback">Please enter your name.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="nick@gmail.com" required>
+                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="tel" class="form-control" id="phone" placeholder="+38-096-123-45-67" required>
+                    <div class="invalid-feedback">Please enter your phone number.</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" id="city" placeholder="Kyiv" required>
+                    <div class="invalid-feedback">Please enter your city.</div>
+                  </div>
+    
+                  <!-- Payment Method Selection -->
+                  <div class="col-md-6">
+                    <label for="paymentMethod" class="form-label">Payment Method</label>
+                    <select class="form-select" id="paymentMethod" required>
+                      <option selected disabled value="">Choose...</option>
+                      <option value="card">Card Payment</option>
+                      <option value="newPost">Nova Poshta Delivery</option>
+                      <option value="selfPickup">Self Pickup</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a payment method.</div>
+                  </div>
+    
+                  <!-- Delivery Method Selection -->
+                  <div class="col-md-6">
+                    <label for="deliveryMethod" class="form-label">Delivery Method</label>
+                    <select class="form-select" id="deliveryMethod" required>
+                      <option selected disabled value="">Choose...</option>
+                      <option value="courier">Courier Delivery</option>
+                      <option value="newPost">Nova Poshta</option>
+                      <option value="pickup">Self Pickup</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a delivery method.</div>
+                  </div>
+                </div>
+              </div>
+            </div><!--CART CLOSE-->
+    
+            <!--Cart Summary OPEN-->
+            <div class="col-lg-4 mb-3">
+              <div class="card-summary sidebar p-3 bg-white">
+                <h5 class="card-summary-text"><span>Order Total</span></h5>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Product</th>
+                        <th>Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Product name <small>$65 x 1</small></td>
+                        <td class="text-end">$65</td>
+                      </tr>
+                      <tr>
+                        <td>Product name 2 <small>$80 x 1</small></td>
+                        <td class="text-end">$80</td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colspan="2" class="text-end">$145</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+            </div><!--Cart Summary CLOSE-->
+          </div>
+        </form>
+
+
+      </div>
+
+
+      <!--============================Работа над футером открыт=====================-->
+      <footer class="footer">
+        <div class="container-fluid">
+          <div class="row">
+            <!--==первая колонка в футере окрыта====-->
+            <div class="col-md-3 col-6">
+              <h4>Information</h4>
+              <ul class="list-unstyled">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Payment</a></li>
+                <li><a href="#">Delivery</a></li>
+                <li><a href="#">Contacts</a></li>
+              </ul>
+            </div><!--==первая колонка в футере закрыта====-->
+
+            <!--==вторая колонка в футере окрыта====-->
+            <div class="col-md-3 col-6">
+              <h4>Working hours</h4>
+              <ul class="list-unstyled">
+                <li>Kyiv, str.Tarasa Shevchenko</li>
+                <li>mon-fri: 9:00-18:00</li>
+              </ul>
+            </div><!--==вторая колонка в футере закрыта====-->
+
+            <!--==третья колонка в футере окрыта====-->
+            <div class="col-md-3 col-6">
+              <h4>Contacts</h4>
+              <ul class="list-unstyled">
+                <li><a href="tel:1234567890">123-456-7890</a></li>
+                <li><a href="#">Contacts</a></li>
+              </ul>
+            </div><!--==третья колонка в футере закрыта====-->
+
+            <!--==четвертая колонка в футере окрыта====-->
+            <div class="col-md-3 col-6">
+              <h4>Follow us</h4>
+              <ul class="footer-icons">
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+              </ul>
+            </div><!--==четвертая колонка в футере закрыта====-->
+
+          </div>
+        </div>
+      </footer><!--============================Работа над футером закрыт=====================-->
+
+      <button type="button" id="top">
+        <i class="fa-solid fa-message"><span class="help-text"> Need help?</span></i>
+      </button>
+
+      <!-- Модальное окно -->
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Enter your phone number and we will contact you</h2>
+          <form>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+            <button type="submit" class="btn-submit">Submit</button>
+          </form>
+        </div>
+      </div>
+      <!-- Модальное окно закрыто -->
+
+  </div>
+  </div>
+  </div>
+
+
+  </main>
+  <!--============================Работа над футером открыт=====================-->
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!--==подключаем jquery для карусели=-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- подключ джава скрипт -->
+  <script src="assets/owlcarousel/owl.carousel.min.js"></script><!--==подключаем карусель=-->
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

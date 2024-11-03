@@ -1,0 +1,263 @@
+
+{% extends "main/base.html" %}
+{% load static %}
+{% load goodstags %}
+
+<!doctype html>
+<html lang="en">
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'assets/css/category.css' %}">
+  {% endblock css %}
+
+
+
+    <!--=============================================Content panel==================================================-->
+
+    {% block content%}
+    <main class="main">
+      <!--============SIDEBAR OPEN=============-->
+      <div class="content-fluid catalog__middle">
+        <div class="row">
+          <div class="col-lg-3 col-md-4">
+            <div class="sidebar">
+              <!-- Model Filter -->
+              <form action="{% if request.get.q %}{% url "catalog:seach" %}{% else %}{% url 'catalog:goods' slug_url %} {% endif %}" method="get" class="">
+              <div class="filter-block">
+                <h5 class="collapse-toggle mb-1" data-bs-toggle="collapse" data-bs-target="#modelFilters"
+                  aria-expanded="false" aria-controls="modelFilters">
+                  <span class="arrow">&#9654;</span>Model
+                </h5>
+                <div class="collapse" id="modelFilters">
+                  <div class="model-filter scrollable-filter">
+                   
+                      <!-- Acer -->
+                      {% get_producer as all_producer%}
+                      {% for producer in all_producer %}
+                      <div class="form-check d-flex justify-content-between">
+                        <div>
+                          <input class="form-check-input" type="checkbox" name="producer" value="{{producer}}" id=""
+                          {% if request.GET.on_lenovo == 'producer' %}checked{% endif %}>
+                          <!-- для фильт после поиска откртыто-->
+                          {% if request.get.q %}
+                          <input type="hidden" name="q" value="{{request.GET.q}}">
+                          {% endif %}
+                          <!-- для фильт после поиска закртыто-->
+                          <label class="form-check-label">{{producer}}</label>
+                        </div>
+                      </div>
+                      {% endfor %}
+                  </div>
+                </div>
+              </div>
+               
+             
+              <!-- Processor Filter -->
+              <div class="filter-block">
+                <h5 class="collapse-toggle mb-1" data-bs-toggle="collapse" data-bs-target="#processorFilters"
+                  aria-expanded="false" aria-controls="processorFilters">
+                  <span class="arrow">&#9654;</span>Processor
+                </h5>
+                <div class="collapse" id="processorFilters">
+                  <div class="processor-filter scrollable-filter">
+       
+                      <!-- Intel -->
+                      {% get_processor_model as processor_model%}
+                      {% for processor in processor_model %}
+                      <div class="form-check d-flex justify-content-between">
+                        <div>
+                          <input class="form-check-input" type="checkbox" name="processor_model" value="{{processor}}" id="">
+                          <label class="form-check-label">{{processor}}</label>
+                        </div>
+                      </div>
+                      {% endfor %}
+      
+                  </div>
+                </div>
+              </div>
+              <!-- VideoCARD Filter open -->
+              <div class="filter-block">
+                <h5 class="collapse-toggle mb-1" data-bs-toggle="collapse" data-bs-target="#VideoCARDFilters"
+                  aria-expanded="false" aria-controls="modelFilters">
+                  <span class="arrow">&#9654;</span>VideoCard
+                </h5>
+                <div class="collapse" id="VideoCARDFilters">
+                  <div class="model-filter scrollable-filter">
+            
+                      <!-- VideoCard -->
+                      {% get_videocard_model as video_card_model%}
+                      {% for video_card  in video_card_model %}
+                      <div class="form-check d-flex justify-content-between">
+                        <div>
+                          <input class="form-check-input" type="checkbox" name="videocard_model" value="{{video_card}}" id="">
+                          <label class="form-check-label" for="accer">{{video_card}}</label>
+                        </div>
+                      </div>
+                      {% endfor %}
+                  </div>
+                </div>
+              </div> <!-- VideoCARD Filterclose -->
+
+              <!-- OperatyvMemory Filter open -->
+              <div class="filter-block">
+                <h5 class="collapse-toggle mb-1" data-bs-toggle="collapse" data-bs-target="#RAMFilters"
+                  aria-expanded="false" aria-controls="modelFilters">
+                  <span class="arrow">&#9654;</span>RAM
+                </h5>
+                <div class="collapse" id="RAMFilters">
+                  <div class="model-filter scrollable-filter">
+         
+                      <!-- RAM -->
+                      {% get_ram as ram_model %}
+                      {% for ram in ram_model %}
+                      <div class="form-check d-flex justify-content-between">
+                        <div>
+                          <input class="form-check-input" type="checkbox" name="ram" value="{{ram}}" id="accer">
+                          <label class="form-check-label" for="accer">{{ram}}ГБ</label>
+                        </div>
+                      </div>
+                      {% endfor %}   
+                  </div>
+                </div>
+              </div> <!-- MemoryOperativ Filterclose -->
+
+              <!-- SSD Filter open -->
+              <div class="filter-block">
+                <h5 class="collapse-toggle mb-1" data-bs-toggle="collapse" data-bs-target="#SSDFilters"
+                  aria-expanded="false" aria-controls="modelFilters">
+                  <span class="arrow">&#9654;</span>SSD
+                </h5>
+                <div class="collapse" id="SSDFilters">
+                  <div class="model-filter scrollable-filter">
+            
+                      <!-- SSD -->
+                      {% get_hdd as type_hdd %}
+                      {% for hdd in type_hdd %}
+                      <div class="form-check d-flex justify-content-between">
+                        <div>
+                          <input class="form-check-input" type="checkbox" name="storage_type" value="{{hdd}}" id="accer">
+                          <label class="form-check-label" for="accer">{{hdd}}</label>
+                        </div>
+                      </div>
+                      {% endfor %}
+                  </div>
+                </div>
+              </div> <!-- SSD Filterclose -->
+
+              <button class="" type="submit">Enter</button>
+            </form>
+            </div>
+
+          </div><!--============SIDEBAR CLOSE=============-->
+
+          <!--============ТОВАРЫ ОТКРЫТО=============-->
+          <div class="col-lg-9 col-md-8 ">
+
+            <!--============Карточки с товаром открыто=============-->
+            <div class="container catalog__middle-col--left">
+              <div class="row">
+                {% if request.GET.q %}
+                <h3 class="mt-4"> Результати пошуку по запиту-{{request.GET.q}}</h3>
+                {% if not items %}
+                <h3 class="mt-4"> По запиту нічого не знайдено</h3>
+                {% endif %}
+                {% endif %}
+                <!-- Начало карточки продукта -->
+                {% for item in items %}
+                <div class="slider-card col-lg-3  col-sm-6 mb-3">
+                  <div class="single-product card__article">
+                    <div class="product-thumb image-wrapper d-flex justify-content-center align-items-center mb-4">
+                      {% if item.image %}
+                      <img src="{{item.image.url}}" alt="Революционный Android OnePlus" class="card__img">
+                      {% else %}
+                      <img src="{% static 'assets/img/1.jpg'%}" alt="{{item.name}}" class="card__img">
+                      {% endif %}
+                    </div>
+                    <div class="product-title">
+                      <h3 class="product-name card__title">
+                        <a href="{% url 'catalog:product' item.slug %}">
+                          {% autoescape off %}
+                          {% if item.headline %}{{item.headline}}
+                          {% else %}{{item.name}}
+                          {% endif %}
+                          {% endautoescape %}</a>
+                        <h6 class="product-id" style="color: #333; font-weight: bold; font-size: 14px; margin-bottom: 10px;">
+                          id:{{item.display_id}}
+                        </h6>
+                    </div>
+                    <div class="product-btns">
+                      <a href="#" class="btn-small mr-2">{{item.price}}</a>
+                      <a href="{% url 'cart:cart_add' item.slug %}" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                      <a href="#" class="btn-round"><i class="fa-solid fa-money-check-dollar"></i></a>
+                    </div>
+                    <!-- Список характеристик -->
+                    <div class="product-specs card__data">
+                      <ul>
+                        <li>
+                          <strong>CPU:</strong> {{item.processor_model}}
+                          <strong>Video card:</strong> {{item.videocard_model}}
+                          <strong>RAM:</strong> {{item.ram}}
+                          <strong>SSD memory:</strong> {{item.storage_capacity}}
+                          <strong>Battery:</strong> {{item.battery}}
+                          <strong>Category:</strong> {{item.category}}
+                          <strong>producer:</strong> {{item.producer}}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+                <!-- Конец карточки продукта -->
+
+              </div>
+            </div> <!--============Карточки с товаром закрыто=============-->
+
+            <!--============Пагинация открыто=============-->
+{% if  items %}
+<div class="row">
+  <div class="col-12">
+      <nav aria-label="Page navigation example">
+          <ul class="pagination">
+              <li class="page-item {% if not items.has_previous %}disabled{% endif %}">
+                  <a class="page-link" href="{% if items.has_previous %}?{% change_params page=items.previous_page_number %}{% else %}# {% endif %}">Назад</a>
+              </li>
+
+              {% for page in items.paginator.page_range %}
+                  {% if page >= items.number|add:-2 and page <= items.number|add:2 %}
+                      <li class="page-item {% if items.number == page %}active{% endif %}">
+                          <a class="page-link" href="?{% change_params page=page %}">{{ page }}</a>
+                      </li>
+                  {% endif %}
+              {% endfor %}
+
+              <li class="page-item {% if not items.has_next %}disabled{% endif %}">
+                  <a class="page-link" href="{% if items.has_next %}?{% change_params page=items.next_page_number %}{% else %}# {% endif %}">Вперед</a>
+              </li>
+          </ul>
+      </nav>
+  </div>
+</div> <!--============Пагинация закрыто=============-->
+{% endif %}
+
+          </div> <!--============ТОВАРЫ ЗАКРЫТО=============-->
+        </div>
+      </div>
+      {% endblock %}
+  </div>
+  </div>
+  </div>
+
+   
+  </main>
+  <!--============================Работа над футером открыт=====================-->
+
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <!--==подключаем jquery для карусели=-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- подключ джава скрипт -->
+  <script src="assets/owlcarousel/owl.carousel.min.js"></script><!--==подключаем карусель=-->
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

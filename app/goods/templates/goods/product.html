@@ -1,0 +1,314 @@
+
+{% extends 'main/base.html' %}
+
+{% load static%}
+
+{% block css%}
+<link rel="stylesheet" href={% static 'assets/css/product.css' %}>
+{% endblock %}
+
+
+<!doctype html>
+<html lang="en">
+
+
+<body>
+
+   
+    <main class="main">
+        {% block content %}
+      <!--============Описание товара OPEN=============-->
+      <div class="content-fluid">
+        <div class="row">
+          <div class="col-md-5 col-lg-4 mb-3">
+            <div class="bg-white ">
+              <!--============Карусель откр=============-->
+              <div id="carouselExampleFade" class="carousel carousel-dark slide carousel-fade">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="{{product.image.url}}" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade"
+                  data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade"
+                  data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div><!--============Карусель закр=============-->
+            </div>
+          </div>
+          <!--============Инфо о товаре открыт=============-->
+          <div class="col-md-7 col-lg-8 mb-3">
+            <div class="bg-white product-content p3 ">
+              <!--============h-100 чтоб колонки были одной высоты=============-->
+              <h1 class="title-section" style="margin-left: 25px;"><span class="product-name">{{product.name}}</span></h1>
+              <div class="product-price">
+                {%if product.discout%}
+                <small>{{product.price}}</small>
+                {{product.sell_price}}
+                {% else %}
+                <span style="font-size: 24px; color: #333; font-weight: bold; margin-left: 25px;">
+                  Price: <span style="color: #FFC147;">{{ product.price }} $</span>
+                </span>
+                {%endif%}
+              </div>
+              <!--=======Подробное описание товара открыто=============-->
+              <div class="row mt-3">
+                <div class="col-12">
+                  <div class="product-contact-details bg-white p-4">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab"
+                          data-bs-target="#description-tab-pane" type="button" role="tab"
+                          aria-controls="description-tab-pane" aria-selected="true">Description</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="features-tab" data-bs-toggle="tab"
+                          data-bs-target="#features-tab-pane" type="button" role="tab" aria-controls="features-tab-pane"
+                          aria-selected="false">Features</button>
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="reviews-tab" data-bs-toggle="tab"
+                          data-bs-target="#reviews-tab-pane" type="button" role="tab" aria-controls="reviews-tab-pane"
+                          aria-selected="false">Reviews</button>
+                      </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                      <!--============description open=============-->
+                      <div class="tab-pane fade show active" id="description-tab-pane" role="tabpanel"
+                        aria-labelledby="description-tab" tabindex="0">
+                        <p>{{product.description}}</p>
+                      </div><!--============description close=============-->
+
+                      <!--============features open=============-->
+                      <div class="tab-pane fade" id="features-tab-pane" role="tabpanel" aria-labelledby="features-tab"
+                        tabindex="0">
+                        <section class="group">
+                          <h3 class="sub-heading">Экран</h3>
+                          <dl class="list">
+                            <div class="item">
+                              <dt class="label"><span>Діагональ екрану</span></dt>
+                              <dd class="value">{{product.screen_size}}</dd>
+                            </div>
+                            <div class="item">
+                              <dt class="label"><span>Частота оновлення екрану</span></dt>
+                              <dd class="value">{{product.screen_refresh_rate}}Гц</dd>
+                            </div>
+                            <div class="item">
+                              <dt class="label"><span>Тип екрану</span></dt>
+                              <dd class="value">{{product.screen_type}}</dd>
+                            </div>
+                            <div class="item">
+                              <dt class="label"><span>Роздільна здатність</span></dt>
+                              <dd class="value">{{product.screen_resolution}}</dd>
+                            </div>
+                            <div class="item">
+                              <dt class="label"><span>Покриття екрану</span></dt>
+                              <dd class="value">{{product.screen_coverage}}</dd>
+                            </div>
+                          </dl>
+
+                          <h3 class="sub-heading">Процессор</h3>
+                          <dl class="list">
+                            <div class="item">
+                              <dt class="label"><span>Модель процесора</span></dt>
+                              <dd class="value">{{product.processor_model}}</dd>
+                            </div>
+                            <div class="item">
+                              <dt class="label"><span>Частота процесора</span></dt>
+                              <dd class="value">{{product.processor_frequency}}ГГц</dd>
+                            </div>
+                            <div class="item">
+                              <dt class="label"><span>Покоління процесора</span></dt>
+                              <dd class="value">{{product.processor_generation}}</dd>
+                            </div>
+                          </dl>
+
+                          <h3 class="sub-heading">Оперативна пам'ять</h3>
+                          <dl class="list">
+                            <div class="item">
+                              <dt class="label"><span>Об'єм оперативної пам'яті</span></dt>
+                              <dd class="value">{{product.ram}} GB</dd>
+                            </div>
+                          </dl>
+
+                          <h3 class="sub-heading">Відеокарта</h3>
+                          <dl class="list">
+                            <div class="item">
+                              <dt class="label"><span>Модель відеокарти</span></dt>
+                              <dd class="value">{{product.videocard_model}}</dd>
+                            </div>
+                            <div class="item">
+                              <dt class="label"><span>Об'єм пам'яті відеокарти</span></dt>
+                              <dd class="value">{{product.videocard_memory}}</dd>
+                            </div>
+                          </dl>
+
+                          <h3 class="sub-heading">Накопичувач</h3>
+                          <dl class="list">
+                            <div class="item">
+                              <dt class="label"><span>Тип накопичувача</span></dt>
+                              <dd class="value">{{product.storage_type}}</dd>
+                            </div>
+                            <div class="item">
+                              <dt class="label"><span>Об'єм накопичувача</span></dt>
+                              <dd class="value">{{product.storage_capacity}}</dd>
+                            </div>
+                          </dl>
+
+                          <h3 class="sub-heading">Батарея</h3>
+                          <dl class="list">
+                            <div class="item">
+                              <dt class="label"><span>Об'єм батареї </span></dt>
+                              <dd class="value">{{product.battery}}</dd>
+                            </div>
+                            
+                          </dl>
+                        </section>
+                      </div><!--============features close=============-->
+
+                      <!--============Отзывы открыто=============-->
+                      <!--============Отзывы открыто=============-->
+                      <div class="tab-pane fade" id="reviews-tab-pane" role="tabpanel" aria-labelledby="reviews-tab"
+                        tabindex="0">
+                        <section class="reviews">
+                          <h3 class="sub-heading">Отзывы</h3>
+
+                          <!-- Список существующих отзывов -->
+                          <!-- Отзыв 1 -->
+                          <div class="review-item">
+                            <div class="review-header">
+                              <span class="review-author">Иван Иванов</span>
+                              <span class="review-rating">★★★★★</span>
+                            </div>
+                            <div class="review-body">
+                              <p>Отличный ноутбук! Пользуюсь уже месяц, все устраивает. Хорошая производительность и
+                                экран.</p>
+                            </div>
+                          </div>
+
+                          <!-- Отзыв 2 -->
+                          <div class="review-item">
+                            <div class="review-header">
+                              <span class="review-author">Мария Петрова</span>
+                              <span class="review-rating">★★★★☆</span>
+                            </div>
+                            <div class="review-body">
+                              <p>Неплохая модель, но батарея держит не так долго, как хотелось бы. В целом довольна
+                                покупкой.</p>
+                            </div>
+                          </div>
+
+                          <!-- Форма для добавления отзыва -->
+                          <h3 class="sub-heading">Оставьте свой отзыв</h3>
+                          <form class="review-form" onsubmit="return validateForm();">
+                            <div class="form-group">
+                              <label for="name">Ваше имя:</label>
+                              <input type="text" id="name" name="name" required placeholder="Введите ваше имя">
+                            </div>
+
+                            <!-- Звездный рейтинг -->
+                            <div class="form-group">
+                              <label>Оценка:</label>
+                              <div class="star-rating">
+                                <span class="star" data-value="5">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="1">★</span>
+                              </div>
+                              <input type="hidden" id="rating" name="rating" required>
+                            </div>
+
+                            <div class="form-group">
+                              <label for="review">Ваш отзыв:</label>
+                              <textarea id="review" name="review" required placeholder="Напишите ваш отзыв"></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Отправить отзыв</button>
+                          </form>
+                        </section>
+                      </div>
+                      <!--============Отзывы закрыто=============-->
+
+                    </div>
+                  </div>
+                </div>
+              </div> <!--=======Подробное описание товара закрыто=============-->
+
+              <div class="product-add2card">
+                <div class="input-group">
+                  <a href="{% url 'cart:cart_add' product.slug %}" class="btn btn-warning"><i class='fas fa-shopping-cart'></i>Add to the cart</a>
+                </div>
+              </div>
+              <!--============рекомендац открыт=============-->
+              <div class="row mt-3">
+                <div class="col-lg-4 mb-2">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h5 class="card-title"><i class="fa-solid fa-shield-halved"></i> Guarantee</h5>
+                      <ul class="list-unstyled">
+                        <li>return within 14 days</li>
+                        <li>quality assurance</li>
+                        <li>only original components</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 mb-2">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h5 class="card-title"><i class="fa-solid fa-money-bill"></i> Guarantee</h5>
+                      <ul class="list-unstyled">
+                        <li>return within 14 days</li>
+                        <li>quality assurance</li>
+                        <li>only original components</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-lg-4 mb-2">
+                  <div class="card h-100">
+                    <div class="card-body">
+                      <h5 class="card-title"><i class="fa-solid fa-truck-fast"></i> Guarantee</h5>
+                      <ul class="list-unstyled">
+                        <li>return within 14 days</li>
+                        <li>quality assurance</li>
+                        <li>only original components</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+
+
+              </div> <!--============рекомендац закрыт=============-->
+            </div>
+
+          </div><!--============Инфо о товаре закрыт=============-->
+
+        </div>
+
+      </div><!--============Описание товара CLOSE=============-->
+      {% endblock %}
+      
+  </div>
+  </div>
+  </div>
+
+
+  </main>
+  <!--============================Работа над футером открыт=====================-->
+ 
+  </div>
+ 
+</body>
+
+</html>
