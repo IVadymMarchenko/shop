@@ -1,45 +1,33 @@
-$(document).ready(function() {
-    $('.cart-qty').on('change', function(event) {
-        event.preventDefault(); // Предотвращаем перезагрузку страницы
+$(document).on('click', '.add-to-cart', function(event) {
+    event.preventDefault();
 
-        let $input = $(this);
-        let url = $input.data('url');
-        let quantity = $input.val();
+    const productId = $(this).data('product-id');
+    const csrfTokenElement = document.querySelector('[name=csrf-token]');
 
-        if (quantity < 1) {
-            quantity = 1;
-            $input.val(1);
-        }
+    if (!csrfTokenElement) {
+        console.error("CSRF-токен не найден.");
+        return;
+    }
 
-        $.ajax({
-            url: url,
-            method: 'POST',
-            data: {
-                'quantity': quantity,
-                'csrfmiddlewaretoken': '{{ csrf_token }}'
-            },
-            success: function(response) {
-                if (response.message) {
-                    // Обновляем значение инпута
-                    $input.val(response.quantity);
+    const csrftoken = csrfTokenElement.getAttribute('content');
 
-                    // Логика для обновления общей суммы (предполагается, что у нас есть элемент с классом `.total-price`)
-                    let totalPrice = 0;
-                    $('.cart-qty').each(function() {
-                        const price = parseFloat($(this).closest('tr').find('.product-price').text());
-                        const qty = parseInt($(this).val(), 10);
-                        totalPrice += price * qty;
-                    });
-                    $('.total-price').text(totalPrice.toFixed(2));
-                }
-            },
-            error: function(xhr) {
-                if (xhr.status === 403) {
-                    alert("Please log in to update the cart.");
-                } else {
-                    console.error("An error occurred:", xhr.responseText);
-                }
+    $.ajax({
+        url: '/cart/cart_add/',
+        type: 'POST',
+        data: { product_id: productId },
+        headers: { 'X-CSRFToken': csrftoken },
+        success: function(data) {
+            console.log("Успешный ответ:", data);
+            $('#cart-items-container').html(data.cart_items_html);
+            $('#offcanvasCart .offcanvas-body').html(data.cart_offcanvas_html);  // Убедитесь, что селектор правильный
+
+            const badgeElement = document.querySelector('.card-badge');
+            if (badgeElement) {
+                badgeElement.textContent = data.total_items;
             }
-        });
+        },
+        error: function(xhr, status, error) {
+            console.error("Ошибка:", error);
+        }
     });
 });

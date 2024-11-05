@@ -82,6 +82,7 @@
           <div class="slider owl-carousel">
             <!-- Начало карточки продукта -->
             {% for item in items %}
+            {%if not item.discout%}
             <div class="slider-card">
               <a href="{% url 'goods:product' item.slug %}">
               <div class="single-product card__article">
@@ -98,7 +99,8 @@
                 </div>
                 <div class="product-btns">
                   <a href="#" class="btn-small mr-2">{{item.price}}</a>
-                  <a href="{% url 'cart:cart_add' item.slug %}" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="{% url 'cart:cart_add' %}" class="btn-round mr-2 add-to-cart" data-product-id="{{item.id}}">
+                    {% csrf_token %}<i class="fa fa-shopping-cart"></i></a>
                   <a href="#" class="btn-round"><i class="fa-solid fa-money-check-dollar"></i></a>
                 </div>
                 <!-- Список характеристик -->
@@ -117,6 +119,7 @@
               </div>
             </a>
             </div>
+            {% endif %}
             {% endfor %}
             <!-- Конец карточки продукта -->
 
@@ -204,7 +207,8 @@
                   <a href="#" class="btn-small mr-2">{{item.price}}</a>
                   {%endif%}
                   
-                  <a href="{% url 'cart:cart_add' item.slug %}" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                  <a href="{% url 'cart:cart_add' %}" class="btn-round mr-2 add-to-cart" data-product-id="{{item.id}}">
+                    {% csrf_token %}<i class="fa fa-shopping-cart"></i></a>
                   <a href="#" class="btn-round"><i class="fa-solid fa-money-check-dollar"></i></a>
                 </div>
                 <!-- Список характеристик -->

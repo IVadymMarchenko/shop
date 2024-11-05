@@ -1,0 +1,42 @@
+{% load static %}
+
+<meta name="csrf-token" content="{{ csrf_token }}">
+
+
+<div class="table-responsive">
+    <table class="table offCanvasCart-table">
+      
+      {% for cart in carts %}
+      <tbody>
+        <!-- первая карточка товара внутри корзины открыто-->
+        <tr>
+          <td class="product-img-td"><a href="{% url 'goods:product' cart.product.slug %}"><img src="{{cart.product.image.url}}"></a></td>
+          <!--фото оовара в корзине-->
+          <td><a href="{% url 'goods:product' cart.product.slug %}">{{cart.product.name}}</a></td><!--название товара в корзине-->
+          {% if not cart.product.discout%}
+          <td>{{cart.product.price}}</td><!--цена товара в корзине-->
+          {% else%}
+          <td>{{cart.product.sell_price}}</td> 
+          {%endif%}
+          <td>&times;{{cart.quantity}}</td><!--количество товара в корзине-->
+          <td><a href="{% url 'cart:cart_remove' cart.id %}" class="btn-btn-danger" style="color:red; font-size: 24px; margin-top: -7px;"><i
+                class="fa-regular fa-circle-xmark"></i></a></td>
+          <!--кнопка удалить товар из корзины-->
+        </tr> <!-- первая карточка товара внутри корзины открыто-->
+      </tbody>
+      {% endfor %}
+
+      <!-- итоговое количество товаров в корзине открыто-->
+      <tfoot>
+        <tr>
+          <td colspan="4" class="text-end">Total: </td>
+          <td class="text-end">{{carts.total_price}}</td><!-- итоговоя сумма-->
+        </tr>
+      </tfoot>
+    </table>
+    {% if carts %}
+    <div class="text-end mt-3">
+    <a href="#" class="btn btn-outline-warning">Оформити замовлення</a>
+     </div>
+    {% endif %}
+  </div>

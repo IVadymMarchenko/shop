@@ -243,7 +243,8 @@
 
               <div class="product-add2card">
                 <div class="input-group">
-                  <a href="{% url 'cart:cart_add' product.slug %}" class="btn btn-warning"><i class='fas fa-shopping-cart'></i>Add to the cart</a>
+                  <a href="{% url 'cart:cart_add' %}" class="btn-round mr-2 add-to-cart" data-product-id="{{product.id}}">
+                    {% csrf_token %}<i class="fa fa-shopping-cart"></i></a>
                 </div>
               </div>
               <!--============рекомендац открыт=============-->

@@ -187,7 +187,8 @@
                     </div>
                     <div class="product-btns">
                       <a href="#" class="btn-small mr-2">{{item.price}}</a>
-                      <a href="{% url 'cart:cart_add' item.slug %}" class="btn-round mr-2"><i class="fa fa-shopping-cart"></i></a>
+                      <a href="{% url 'cart:cart_add' %}" class="btn-round mr-2 add-to-cart" data-product-id="{{item.id}}">
+                        {% csrf_token %}<i class="fa fa-shopping-cart"></i></a>
                       <a href="#" class="btn-round"><i class="fa-solid fa-money-check-dollar"></i></a>
                     </div>
                     <!-- Список характеристик -->
