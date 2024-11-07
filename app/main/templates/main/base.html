@@ -25,8 +25,9 @@
   {% block css %}
   {% endblock css %}
 </head>
-{% include "main/notifications.html" %}
+
 <body>
+  
   <div class="wrapper">
     <header class="header">
       <div class="header-top py-1"> <!-- отодвинем по оси Y кнопки и иконки вниз py-1 -->
@@ -53,6 +54,7 @@
             </div>
               
             <div class="col-6 col-sm-4 ">
+              
               <!--  Окрыли d-flex justify-content-end прижимает к правому краю -->
               <div class="d-flex justify-content-end "> <!-- d-flex justify-content-end прижимает к правому краю -->
                 <li style="margin-right: 10px; margin-top: 12px; list-style: none"><span class="username">Hello {{ user.username|default:"😎" }}</span></li>
@@ -171,11 +173,11 @@
                   <a class="nav-link " href="{% url 'catalog:goods' category.slug %}">{{category}}</a>
                 </li>
                 {% endfor %}
-                {% if request.user.is_authenticated %}
+                
                 <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="{% url 'users:cart' %}">Cart</a>
                 </li>
-                {% endif %}
+               
                 
                 
                 </li>
@@ -203,16 +205,17 @@
 
     <!--=============================================Content panel==================================================-->
     <main class="main">
-    
      
-    
+     
+      {% include "main/notifications.html" %}
     {% block content%}
-
+    
+    
     {% endblock %}
 
     
       
- 
+    
     <!--============================Работа над футером открыт=====================-->
     <footer class="footer">
       <div class="container-fluid">

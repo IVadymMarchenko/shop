@@ -2,32 +2,39 @@ $(document).on('click', '.add-to-cart', function(event) {
     event.preventDefault();
 
     const productId = $(this).data('product-id');
-    const csrfTokenElement = document.querySelector('[name=csrf-token]');
+    const csrftoken = $('meta[name="csrf-token"]').attr('content');
+    
 
-    if (!csrfTokenElement) {
-        console.error("CSRF-токен не найден.");
-        return;
-    }
-
-    const csrftoken = csrfTokenElement.getAttribute('content');
+    if (!csrftoken) return console.error("CSRF-токен не найден.");
 
     $.ajax({
         url: '/cart/cart_add/',
         type: 'POST',
         data: { product_id: productId },
         headers: { 'X-CSRFToken': csrftoken },
-        success: function(data) {
-            console.log("Успешный ответ:", data);
-            $('#cart-items-container').html(data.cart_items_html);
-            $('#offcanvasCart .offcanvas-body').html(data.cart_offcanvas_html);  // Убедитесь, что селектор правильный
+        dataType: 'json',
+        success: function({ message, cart_items_html, cart_offcanvas_html, total_items }) {
+            const notification = $('#jq-notification');
+            notification.text(message)
+                .stop(true, true) // Останавливаем любые текущие анимации
+                .fadeIn(30) // Плавное появление
+                .delay(1000) // Задержка перед исчезновением
+                .fadeOut(300); // Плавное исчезновение
 
-            const badgeElement = document.querySelector('.card-badge');
-            if (badgeElement) {
-                badgeElement.textContent = data.total_items;
-            }
+            $('#cart-items-container').html(cart_items_html);
+            $('#offcanvasCart .offcanvas-body').html(cart_offcanvas_html);
+            $('.card-badge').text(total_items);
         },
-        error: function(xhr, status, error) {
-            console.error("Ошибка:", error);
+        error: function() {
+            console.error("Ошибка при добавлении товара.");
         }
     });
 });
+
+
+
+
+
+
+
+

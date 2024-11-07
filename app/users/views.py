@@ -65,6 +65,6 @@ def logout(request):
     return redirect(reverse('user:login'))
 
 
-@login_required
+
 def user_cart(request):
     return render(request,'users/cart.html')
