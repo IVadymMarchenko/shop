@@ -32,7 +32,6 @@ def cart_add(request):
             Cart.objects.create(session_key=request.session.session_key, product=product, quantity=1)
 
     user_cart = get_user_carts(request)
-    print('AAAAAAAAAAAA',user_cart)
     total_items = sum(cart_item.quantity for cart_item in user_cart)
     
     cart_item_html = render_to_string('main/cart_button.html', {'carts': user_cart}, request=request)
@@ -50,18 +49,23 @@ def cart_add(request):
 
 def cart_change(request, product_id):
     product = get_object_or_404(Products, id=product_id)
-    
+    quantity = int(request.POST.get('quantity', 1))
     if request.user.is_authenticated:
-        quantity = int(request.POST.get('quantity', 1))
-        
+        # Для авторизованных пользователей
         cart, created = Cart.objects.get_or_create(user=request.user, product=product)
         cart.quantity = quantity
-        cart.save()
-        
-        # Возвращаем JSON-ответ с новым количеством и подтверждением
+        cart.save()  
         return JsonResponse({"message": "Quantity updated", "quantity": cart.quantity})
-    
-    return JsonResponse({"error": "User not authenticated"}, status=403)
+    else:
+        # Для неавторизованных пользователей - работа с корзиной по session_key
+        session_key = request.session.session_key
+        if not session_key:
+            request.session.create()  # Создаем сессию, если её нет
+        cart, created = Cart.objects.get_or_create(session_key=session_key, product=product)
+        cart.quantity = quantity
+        cart.save()
+        return JsonResponse({"message": "Quantity updated", "quantity": cart.quantity})
+    return JsonResponse({"error": "Unable to update cart"}, status=400)
 
 
 

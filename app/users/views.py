@@ -2,6 +2,8 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls import reverse
+
+from carts.models import Cart
 from .forms import UserLoginForm,UserRegisterForm
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import AuthenticationForm
@@ -21,9 +23,16 @@ def login(request):
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
             user = authenticate(request, email=email, password=password)
+            
+            session_key=request.session.session_key # ДЛЯ НЕЗАРЕГ ПОЛЬЗОВАТ переб корзину при авторизац
+            
+            
             if user is not None:
                 auth.login(request, user)
                 messages.success(request, f'{email}, login is successful')
+                
+                if session_key:# ДЛЯ НЕЗАРЕГ ПОЛЬЗОВАТ переб корзину при авторизац
+                    Cart.objects.filter(session_key=session_key).update(user=user)# ДЛЯ НЕЗАРЕГ ПОЛЬЗОВАТ переб корзину при авторизац
                 
                 redirect_page=request.POST.get('next',None)
                 if redirect_page and redirect_page != reverse('user:logout'):
@@ -46,8 +55,15 @@ def registration(request):
         form = UserRegisterForm(data=request.POST)
         if form.is_valid():
             form.save()
+            
+            session_key=request.session.session_key # ДЛЯ НЕЗАРЕГ ПОЛЬЗОВАТ переб корзину при авторизац
+            
             user=form.instance
             auth.login(request, user)
+            
+            if session_key:# ДЛЯ НЕЗАРЕГ ПОЛЬЗОВАТ переб корзину при авторизац
+                    Cart.objects.filter(session_key=session_key).update(user=user)# ДЛЯ НЕЗАРЕГ ПОЛЬЗОВАТ переб корзину при авторизац
+            
             messages.success(request,f'{user.username} registration is successful')
             return redirect(reverse('main:main'))
     else:
