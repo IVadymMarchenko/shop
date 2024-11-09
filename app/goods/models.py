@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 #venv\Scripts\activate
@@ -71,6 +72,10 @@ class Products(models.Model):
     
     def __str__(self):
         return f'{self.name} Кількість - {self.count}'  # для отображения названия в адм панеле
+    
+    def get_absolute_url(self):# метод для админки кнопка перехода для просмотра товара
+        return reverse("catalog:product", kwargs={"product_slug": self.slug})
+    
     
     def display_id(self):
         return f'{self.id:05}' #self.id:05 добавим нули к айди чтобы сумарное значение было 5 символов
