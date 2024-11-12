@@ -1,0 +1,28 @@
+.btn-order {
+    background-color: #ffc107; /* Жёлтый цвет */
+    color: #212529;
+    border-radius: 30px;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  .btn-order:hover {
+    background-color: #e0a800; /* Более тёмный оттенок жёлтого */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+  }
+  
+  .btn-order:active {
+    background-color: #d39e00;
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  

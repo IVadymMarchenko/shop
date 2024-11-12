@@ -73,7 +73,7 @@ class Products(models.Model):
     def __str__(self):
         return f'{self.name} Кількість - {self.count}'  # для отображения названия в адм панеле
     
-    def get_absolute_url(self):# метод для админки кнопка перехода для просмотра товара
+    def get_absolute_url(self):# метод для админки кнопка перехода для просмотра товара на сайте
         return reverse("catalog:product", kwargs={"product_slug": self.slug})
     
     

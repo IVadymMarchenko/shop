@@ -1,0 +1,129 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% load get_cart_tags %}
+{% block content %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'assets/css/order_button.css' %}">
+{% endblock css %}
+<div class="container-fluid">
+    <form action="{% url 'orders:create_order' %}" method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+        <div class="row">
+            <!--CART OPEN-->
+            <div class="col-lg-8 mb-3">
+                <div class="checkout-content p-3 h-100 bg-white">
+                    <h1 class="card-summary-text h4"><span>Placing an order</span></h1>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="id_name" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="id_name" name="name" placeholder="Kovalenko Igor"
+                                   value="{% if form.name.value %}{{ form.name.value }}{% endif %}" required>
+                            {% if form.name.errors %}
+                                <div class="alert alert-danger alert-dismissable fade show">{{ form.name.errors }}</div>
+                            {% endif %}
+                            <div class="invalid-feedback">Please enter your name.</div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="id_email" class="form-label">Email</label>
+                            <input type="email" class="form-control" name="email" id="id_email" placeholder="nick@gmail.com"
+                                   value="{% if form.email.value %}{{ form.email.value }}{% endif %}" required>
+                            {% if form.email.errors %}
+                                <div class="alert alert-danger alert-dismissable fade show">{{ form.email.errors }}</div>
+                            {% endif %}
+                            <div class="invalid-feedback">Please enter a valid email address.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="id_phone_number" class="form-label">Phone</label>
+                            <input type="tel" class="form-control" name="phone_number" id="id_phone_number" placeholder="+38-096-123-45-67"
+                                   value="{% if form.phone_number.value %}{{ form.phone_number.value }}{% endif %}" required>
+                            {% if form.phone.errors %}
+                                <div class="alert alert-danger alert-dismissable fade show">{{ form.phone.errors }}</div>
+                            {% endif %}
+                            <div class="invalid-feedback">Please enter your phone number.</div>
+                        </div>
+
+                        <!-- Доставка -->
+                        <div class="col-md-6">
+                            <label for="id_deliveryMethod" class="form-label">Доставка</label>
+                            <select class="form-select" id="id_deliveryMethod" name="requires_delivery" required>
+                                <option selected disabled value="">Choose...</option>
+                                <option value="0">Самовивіз</option>
+                                <option value="1">Доставка нова пошта</option>
+                            </select>
+                            {% if form.requires_delivery.errors %}
+                                <div class="alert alert-danger alert-dismissable fade show">{{ form.requires_delivery.errors }}</div>
+                            {% endif %}
+                            <div class="invalid-feedback">Please select a delivery method.</div>
+                        </div>
+                        
+                        <!-- МІСТО -->
+                        {% include "orders/delivery.html" %}
+
+                        <!-- Спосіб оплати-->
+                        <div class="col-md-6">
+                            <label for="id_paymentMethod" class="form-label">Спосіб оплати</label>
+                            <select class="form-select" id="id_paymentMethod" name="payment" required>
+                                <option selected disabled value="">Choose...</option>
+                                <option value="0">Оплата карткою</option>
+                                <option value="1">Оплата наложенним платижем</option>
+                            </select>
+                          </select>
+                          {% if form.delivery_address.errors %}
+                              <div class="alert alert-danger alert-dismissable fade show">{{ form.delivery_address.errors }}</div>
+                          {% endif %}
+                            <div class="invalid-feedback">Please select a payment method.</div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div><!--CART CLOSE-->
+
+            <!--Cart Summary OPEN-->
+            <div class="col-lg-4 mb-3">
+                <div class="card-summary sidebar p-3 bg-white">
+                    <h5 class="card-summary-text"><span>Order Total</span></h5>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% get_cart_tags request as carts %}
+                                {% for cart in carts %}
+                                    <tr>
+                                        <td>{{ cart.product.name }} <small>x {{ cart.quantity }}</small></td>
+                                        {% if cart.product.discount %}
+                                            <td class="text-end">${{ cart.product.sell_price }}</td>
+                                        {% else %}
+                                            <td class="text-end">${{ cart.product.price }}</td>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2" class="text-end">${{ total_price }}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    <!-- Order Button -->
+                    {% if carts %}
+                        <div class="d-grid mt-3">
+                            <button type="submit" class="btn btn-primary btn-order">Place Order</button>
+                        </div>
+                    {% endif %}
+                </div>
+            </div><!--Cart Summary CLOSE-->
+        </div>
+    </form>
+</div>
+{% endblock %}
+

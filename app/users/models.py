@@ -6,6 +6,7 @@ from django.core.exceptions import ValidationError
 
 class CustomUser(AbstractUser):
     email = models.EmailField(max_length=100,unique=True)
+    phone=models.CharField(max_length=15,blank=True,null=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
     
