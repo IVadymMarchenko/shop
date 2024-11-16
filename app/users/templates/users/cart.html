@@ -43,20 +43,32 @@
                                     <input type="number" value="{{ cart.quantity }}" class="form-control cart-qty" data-url="{% url 'carts:cart_change' cart.product.id %}">
                                 </td>
                                 <td>
-                                    <a href="{% url 'carts:cart_remove' cart.id %}" class="btn-btn-danger" style="color:red; font-size: 24px; margin-top: -7px;">
-                                        <i class="fa-regular fa-circle-xmark"></i>
-                                    </a>
+                                    <form action="{% url 'carts:cart_remove' cart.id %}" method="post" style="display:inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn-btn-danger" style="color:red; font-size: 24px; margin-top: -7px; border: none; background: none;">
+                                            <i class="fa-regular fa-circle-xmark"></i>
+                                        </button>
+                                    </form>
                                 </td>
                             </tr>
                         </tbody>
                         {% endfor %}
                         {% if carts %}
                         <tfoot>
+                            {% if request.user.is_authenticated %}
                             <tr>
                                 <td colspan="5" class="text-end">
                                       <a href="{% url 'orders:create_order' %}" class="btn btn-outline-warning">Оформить заказ</a>
                                 </td>
                             </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="5" class="text-end">
+                                    <a href="{% url 'users:registration' %}" style="color: #007bff; font-weight: bold;">Зареєструйтесь</a> або 
+                                    <a href="{% url 'users:login' %}" style=" color: #007bff; font-weight: bold;">увійдіть</a> для оформлення замовлення
+                                </td>
+                            </tr>
+                            {% endif %}
                         </tfoot>
                         {% endif %}
                     </table>

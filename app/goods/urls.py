@@ -8,8 +8,8 @@ app_name = 'goods'
 
 
 urlpatterns = [
-     path("seach/", views.catalog, name="seach"),
-     path("<slug:category_slug>/", views.catalog, name="goods"),
-     path("product/<slug:product_slug>/", views.product, name="product"),
+     path("seach/", views.CatalogView.as_view(), name="seach"),
+     path("<slug:category_slug>/", views.CatalogView.as_view(), name="goods"),
+     path("product/<slug:product_slug>/", views.ProductView.as_view(), name="product"),
      
      ]

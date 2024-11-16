@@ -17,7 +17,7 @@ class CategoriesAdmin(admin.ModelAdmin):
 @admin.register(Products)
 class ProductsAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug':('name',)}
-    list_display=['name','count','price','discout',] # отображен полей в админке
+    list_display=['id','name','count','price','discout',] # отображен полей в админке
     list_editable=['price','discout',] # поля которые можно редактир в админке
     search_fields=['name','description'] # поля поиска в админке
     list_filter = ['discout','count','category']  # поля фильтрац в админке

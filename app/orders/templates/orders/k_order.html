@@ -37,8 +37,8 @@
                             <label for="id_phone_number" class="form-label">Phone</label>
                             <input type="tel" class="form-control" name="phone_number" id="id_phone_number" placeholder="+38-096-123-45-67"
                                    value="{% if form.phone_number.value %}{{ form.phone_number.value }}{% endif %}" required>
-                            {% if form.phone.errors %}
-                                <div class="alert alert-danger alert-dismissable fade show">{{ form.phone.errors }}</div>
+                            {% if form.phone_number.errors %}
+                                <div class="alert alert-danger alert-dismissable fade show">{{ form.phone_number.errors }}</div>
                             {% endif %}
                             <div class="invalid-feedback">Please enter your phone number.</div>
                         </div>

@@ -8,5 +8,5 @@ app_name = 'main'
 
 
 urlpatterns = [
-     path("", views.top_sales, name="main"),   
+     path("", views.TopSalesView.as_view(), name="main"),   
 ]

@@ -22,7 +22,7 @@
           <div class="col-lg-3 col-md-4">
             <div class="sidebar">
               <!-- Model Filter -->
-              <form action="{% if request.get.q %}{% url "catalog:seach" %}{% else %}{% url 'catalog:goods' slug_url %} {% endif %}" method="get" class="">
+              <form action="{% if request.get.q %}{% url "catalog:seach" %}{% else %}{% url 'catalog:goods' category_slug %} {% endif %}" method="get" class="">
               <div class="filter-block">
                 <h5 class="collapse-toggle mb-1" data-bs-toggle="collapse" data-bs-target="#modelFilters"
                   aria-expanded="false" aria-controls="modelFilters">
@@ -219,20 +219,20 @@
   <div class="col-12">
       <nav aria-label="Page navigation example">
           <ul class="pagination">
-              <li class="page-item {% if not items.has_previous %}disabled{% endif %}">
-                  <a class="page-link" href="{% if items.has_previous %}?{% change_params page=items.previous_page_number %}{% else %}# {% endif %}">Назад</a>
+              <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                  <a class="page-link" href="{% if page_obj.has_previous %}?{% change_params page=page_obj.previous_page_number %}{% else %}# {% endif %}">Назад</a>
               </li>
 
-              {% for page in items.paginator.page_range %}
-                  {% if page >= items.number|add:-2 and page <= items.number|add:2 %}
-                      <li class="page-item {% if items.number == page %}active{% endif %}">
+              {% for page in page_obj.paginator.page_range %}
+                  {% if page >= page_obj.number|add:-2 and page <= page_obj.number|add:2 %}
+                      <li class="page-item {% if page_obj.number == page %}active{% endif %}">
                           <a class="page-link" href="?{% change_params page=page %}">{{ page }}</a>
                       </li>
                   {% endif %}
               {% endfor %}
 
-              <li class="page-item {% if not items.has_next %}disabled{% endif %}">
-                  <a class="page-link" href="{% if items.has_next %}?{% change_params page=items.next_page_number %}{% else %}# {% endif %}">Вперед</a>
+              <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                  <a class="page-link" href="{% if page_obj.has_next %}?{% change_params page=page_obj.next_page_number %}{% else %}# {% endif %}">Вперед</a>
               </li>
           </ul>
       </nav>

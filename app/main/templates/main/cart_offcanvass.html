@@ -19,8 +19,12 @@
           <td>{{cart.product.sell_price}}</td> 
           {%endif%}
           <td>&times;{{cart.quantity}}</td><!--количество товара в корзине-->
-          <td><a href="{% url 'cart:cart_remove' cart.id %}" class="btn-btn-danger" style="color:red; font-size: 24px; margin-top: -7px;"><i
-                class="fa-regular fa-circle-xmark"></i></a></td>
+          <td><form action="{% url 'carts:cart_remove' cart.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn-btn-danger" style="color:red; font-size: 24px; margin-top: -7px; border: none; background: none;">
+                <i class="fa-regular fa-circle-xmark"></i>
+            </button>
+        </form></a></td>
           <!--кнопка удалить товар из корзины-->
         </tr> <!-- первая карточка товара внутри корзины открыто-->
       </tbody>
@@ -34,9 +38,17 @@
         </tr>
       </tfoot>
     </table>
-    {% if carts %}
+    {% if carts and request.user.is_authenticated %}
     <div class="text-end mt-3">
       <a href="{% url 'orders:create_order' %}" class="btn btn-outline-warning">Оформити замовлення</a>
      </div>
-    {% endif %}
+     {% endif %}
+     {% if  not request.user.is_authenticated %}
+     <tr>
+      <td colspan="5" class="text-end">
+          <a href="{% url 'users:registration' %}" style="color: #007bff; font-weight: bold;">Зареєструйтесь</a> або 
+          <a href="{% url 'users:login' %}" style=" color: #007bff; font-weight: bold;">увійдіть</a> для оформлення замовлення
+      </td>
+  </tr>
+  {% endif %}
   </div>
