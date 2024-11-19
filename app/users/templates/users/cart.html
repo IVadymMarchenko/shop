@@ -58,14 +58,14 @@
                             {% if request.user.is_authenticated %}
                             <tr>
                                 <td colspan="5" class="text-end">
-                                      <a href="{% url 'orders:create_order' %}" class="btn btn-outline-warning">Оформить заказ</a>
+                                      <a href="{% url 'orders:create_order' %}" class="btn btn-outline-warning">Place an order</a>
                                 </td>
                             </tr>
                             {% else %}
                             <tr>
                                 <td colspan="5" class="text-end">
-                                    <a href="{% url 'users:registration' %}" style="color: #007bff; font-weight: bold;">Зареєструйтесь</a> або 
-                                    <a href="{% url 'users:login' %}" style=" color: #007bff; font-weight: bold;">увійдіть</a> для оформлення замовлення
+                                    <a href="{% url 'users:registration' %}" style="color: #007bff; font-weight: bold;">Register</a> або 
+                                    <a href="{% url 'users:login' %}" style=" color: #007bff; font-weight: bold;">log in</a>to make an order
                                 </td>
                             </tr>
                             {% endif %}
@@ -94,7 +94,7 @@
 <script>
 $(document).ready(function() {
     $('.cart-qty').on('change', function(event) {
-        event.preventDefault(); // Предотвращаем перезагрузку страницы
+        event.preventDefault(); 
 
         let $input = $(this);
         let url = $input.data('url');

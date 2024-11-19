@@ -20,7 +20,12 @@ class TopSalesView(TemplateView):
         # Возвращаем контекст для использования в шаблоне
         return context
   
-  
+
+
+
+
+
+
 #def top_sales(request):
   
   #top_sales= Products.objects.order_by('-sales_count')[:10]

@@ -19,7 +19,7 @@ from django.urls import path,include
 from debug_toolbar.toolbar import debug_toolbar_urls
 from django.conf.urls.static import static
 from . import settings
-
+from django.views.decorators.cache import cache_page
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +28,7 @@ urlpatterns = [
     path("user/", include("users.urls",namespace='user')),
     path("cart/", include("carts.urls",namespace='cart')),
     path("orders/", include("orders.urls",namespace='orders')),
+    path("help/", include("for_help.urls",namespace='help')),
     
     
 ] + debug_toolbar_urls()

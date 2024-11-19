@@ -1,7 +1,7 @@
 {% load static %}
 {% load main_tags %}
+{% load cache %}
 {% load carts_tags %}
-
 <!doctype html>
 <html lang="en">
 
@@ -167,19 +167,18 @@
                 <li class="nav-item">
                   <a class="nav-link active" aria-current="page" href="{% url 'main:main' %}">Home</a>
                 </li>
+                {% cache 60 categories %}
                 {% tag_categories as categories %}
                 {% for category in categories %}
                 <li>
                   <a class="nav-link " href="{% url 'catalog:goods' category.slug %}">{{category}}</a>
                 </li>
                 {% endfor %}
+                {% endcache %}
                 
                 <li class="nav-item">
                   <a class="nav-link" aria-current="page" href="{% url 'users:cart' %}">Cart</a>
                 </li>
-               
-                
-                
                 </li>
               </ul>
             </div>
@@ -266,23 +265,12 @@
 
     
     
-    <button type="button" id="top">
+    <a href="{% url 'help:help' %}" id="top">
       <i class="fa-solid fa-message"><span class="help-text"> Need help?</span></i>
-    </button>
+    </a>
 
     <!-- Модальное окно -->
-    <div id="modal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h5>Enter your phone number and we will contact you</h5>
-        <form>
-          <input type="text" id="name" name="name" placeholder="Enter your name" required>
-          <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
-
-          <button type="submit" class="btn-submit">Submit</button>
-        </form>
-      </div>
-    </div>
+  
     <!-- Модальное окно закрыто -->
    
 
