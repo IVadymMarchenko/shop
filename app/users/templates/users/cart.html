@@ -114,10 +114,10 @@ $(document).ready(function() {
             },
             success: function(response) {
                 if (response.message) {
-                    // Обновляем значение инпута
+                    
                     $input.val(response.quantity);
 
-                    // Логика для обновления общей суммы (предполагается, что у нас есть элемент с классом `.total-price`)
+                    
                     let totalPrice = 0;
                     $('.cart-qty').each(function() {
                         const price = parseFloat($(this).closest('tr').find('.product-price').text());
